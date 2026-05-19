@@ -3,6 +3,7 @@
 import "lazysizes";
 import { useEffect, useRef, useState } from "react";
 import {
+  AnimatePresence,
   motion,
   useMotionValue,
   useScroll,
@@ -10,10 +11,10 @@ import {
   useTransform,
 } from "motion/react";
 import gsap from "gsap";
+import Link from "next/link";
 import {
   ArrowRight,
   Award,
-  ChevronDown,
   Menu,
   Minus,
   Plus,
@@ -49,6 +50,12 @@ export default function AgencyApp() {
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [cursorX, cursorY]);
+
+  useEffect(() => {
+    if (!menuOpen) {
+      setServicesOpen(false);
+    }
+  }, [menuOpen]);
 
   useEffect(() => {
     if (!gsapScope.current) {
@@ -129,21 +136,21 @@ export default function AgencyApp() {
   const testimonials = [
     {
       quote:
-        "KOTA transformed our digital presence completely. The results speak for themselves.",
+        "INNOVAFY transformed our digital presence completely. The results speak for themselves.",
       author: "Sarah Johnson",
       role: "CEO, TechStart",
       result: "67.6% rise in engaged sessions",
     },
     {
       quote:
-        "Working with KOTA was seamless. They understood our vision and exceeded expectations.",
+        "Working with INNOVAFY was seamless. They understood our vision and exceeded expectations.",
       author: "Michael Chen",
       role: "Marketing Director, RetailCo",
       result: "83.14% increase in sales",
     },
     {
       quote:
-        "The strategic approach KOTA brought to our branding was exactly what we needed.",
+        "The strategic approach INNOVAFY brought to our branding was exactly what we needed.",
       author: "Emma Wilson",
       role: "Founder, FinanceApp",
       result: "2.5x conversion improvement",
@@ -214,111 +221,129 @@ export default function AgencyApp() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-neutral-200"
+        className="fixed top-0 left-0 right-0 z-50"
       >
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="flex justify-between items-center h-20">
-            <motion.div whileHover={{ scale: 1.05 }} className="text-2xl font-bold tracking-tight">
-              KOTA
-            </motion.div>
+            <Link href="/" className="text-2xl font-bold tracking-tight">
+              INNOVAFY
+            </Link>
 
-            <div className="hidden lg:flex items-center gap-8">
-              {["Work", "Agency"].map((item, i) => (
-                <motion.a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1, duration: 0.6 }}
-                  className="text-sm font-medium text-neutral-700 hover:text-black transition-colors"
+            <div className="flex items-center gap-3">
+              <motion.div whileHover={{ scale: 1.03 }} className="hidden sm:inline-flex">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-black text-white text-sm font-medium"
                 >
-                  {item}
-                </motion.a>
-              ))}
-
-              <div className="relative">
-                <button
-                  onClick={() => setServicesOpen(!servicesOpen)}
-                  className="flex items-center gap-1 text-sm font-medium text-neutral-700 hover:text-black transition-colors"
-                >
-                  Services
-                  <ChevronDown className={`w-4 h-4 transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
-                </button>
-
-                {servicesOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="absolute top-full left-0 mt-2 bg-white border border-neutral-200 rounded-lg shadow-lg p-4 min-w-[200px]"
-                  >
-                    <div className="space-y-2">
-                      {services.map((service) => (
-                        <a
-                          key={service.title}
-                          href="#services"
-                          className="block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-50 rounded transition-colors"
-                        >
-                          {service.title}
-                        </a>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </div>
-
-              {["Blog", "Contact"].map((item, i) => (
-                <motion.a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: (i + 3) * 0.1, duration: 0.6 }}
-                  className="text-sm font-medium text-neutral-700 hover:text-black transition-colors"
-                >
-                  {item}
-                </motion.a>
-              ))}
-
+                  Hire us
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </motion.div>
               <motion.button
+                onClick={() => setMenuOpen((prev) => !prev)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 py-2.5 bg-blue-600 text-white rounded-full text-sm font-medium hover:bg-blue-700 transition-colors"
+                className="w-11 h-11 rounded-full border border-neutral-900/20 bg-white/90 backdrop-blur-sm flex items-center justify-center"
               >
-                Start your project
+                {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </motion.button>
             </div>
-
-            <button onClick={() => setMenuOpen(!menuOpen)} className="lg:hidden p-2">
-              {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
           </div>
         </div>
+      </motion.nav>
 
+      <AnimatePresence>
         {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden border-t border-neutral-200 bg-white"
-          >
-            <div className="px-6 py-8 space-y-4">
-              {["Work", "Agency", "Services", "Blog", "Contact"].map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className="block text-lg font-medium text-neutral-700 hover:text-black transition-colors"
+          <>
+            <motion.button
+              type="button"
+              className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMenuOpen(false)}
+            />
+
+            <motion.aside
+              initial={{ opacity: 0, y: -20, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.98 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed top-6 right-6 z-50 w-[280px] sm:w-[320px] bg-white text-neutral-900 rounded-3xl shadow-2xl p-6"
+            >
+              <div className="flex justify-end">
+                <button
+                  onClick={() => setMenuOpen(false)}
+                  className="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <nav className="mt-6 space-y-4 text-lg font-semibold">
+                <Link href="/work" onClick={() => setMenuOpen(false)} className="block hover:text-blue-600 transition-colors">
+                  Work
+                </Link>
+                <Link href="/agency" onClick={() => setMenuOpen(false)} className="block hover:text-blue-600 transition-colors">
+                  Agency
+                </Link>
+                <button
+                  onClick={() => setServicesOpen((prev) => !prev)}
+                  className="w-full flex items-center justify-between hover:text-blue-600 transition-colors"
+                >
+                  Services
+                  <motion.span animate={{ rotate: servicesOpen ? 45 : 0 }} className="text-2xl leading-none">
+                    +
+                  </motion.span>
+                </button>
+
+                <AnimatePresence>
+                  {servicesOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="pl-4 text-base font-medium text-neutral-600 space-y-2 overflow-hidden"
+                    >
+                      {services.map((service) => (
+                        <Link
+                          key={service.title}
+                          href="/services"
+                          onClick={() => setMenuOpen(false)}
+                          className="block hover:text-blue-600 transition-colors"
+                        >
+                          {service.title}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                <Link href="/blog" onClick={() => setMenuOpen(false)} className="block hover:text-blue-600 transition-colors">
+                  Blog
+                </Link>
+                <Link href="/culture" onClick={() => setMenuOpen(false)} className="block hover:text-blue-600 transition-colors">
+                  Culture
+                </Link>
+                <Link href="/contact" onClick={() => setMenuOpen(false)} className="block hover:text-blue-600 transition-colors">
+                  Contact
+                </Link>
+              </nav>
+
+              <motion.div whileHover={{ scale: 1.03 }}>
+                <Link
+                  href="/contact"
+                  className="mt-8 inline-flex items-center justify-between w-full px-5 py-3 rounded-full border border-neutral-300 text-sm font-medium"
                   onClick={() => setMenuOpen(false)}
                 >
-                  {item}
-                </a>
-              ))}
-              <button className="w-full px-6 py-3 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition-colors">
-                Start your project
-              </button>
-            </div>
-          </motion.div>
+                  Start your project
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </motion.div>
+            </motion.aside>
+          </>
         )}
-      </motion.nav>
+      </AnimatePresence>
 
       <section className="relative min-h-[100vh] flex items-center justify-center px-6 lg:px-12 pt-32 pb-20 overflow-hidden">
         <motion.div
@@ -1092,17 +1117,17 @@ export default function AgencyApp() {
               transition={{ delay: 0.1 }}
             >
               <motion.h3 whileHover={{ scale: 1.05 }} className="text-3xl font-bold mb-6">
-                KOTA
+                INNOVAFY
               </motion.h3>
               <p className="text-neutral-400 text-sm mb-6 leading-relaxed">
                 Award-winning creative agency specializing in web design, branding, and digital marketing.
               </p>
               <motion.a
-                href="mailto:hello@kota.co.uk"
+                href="mailto:hello@innovafy.com"
                 whileHover={{ x: 5 }}
                 className="text-sm text-blue-400 hover:text-blue-300 transition-colors inline-flex items-center gap-2"
               >
-                hello@kota.co.uk
+                hello@innovafy.com
                 <ArrowRight className="w-4 h-4" />
               </motion.a>
             </motion.div>
@@ -1199,7 +1224,7 @@ export default function AgencyApp() {
             transition={{ delay: 0.6 }}
             className="pt-8 border-t border-neutral-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-neutral-500"
           >
-            <motion.p whileHover={{ scale: 1.02 }}>© 2026 KOTA Creative Agency. All rights reserved.</motion.p>
+            <motion.p whileHover={{ scale: 1.02 }}>© 2026 INNOVAFY Creative Agency. All rights reserved.</motion.p>
             <div className="flex gap-6">
               {["Privacy Policy", "Terms of Service"].map((item) => (
                 <motion.a
