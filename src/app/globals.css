@@ -1,0 +1,35 @@
+@import "swiper/css";
+@import "swiper/css/pagination";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply antialiased;
+}
+
+.swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background: #ffffff;
+  width: 24px;
+  border-radius: 9999px;
+}
+
+.lazyload,
+.lazyloading {
+  filter: blur(6px);
+  transition: filter 0.4s ease;
+}
+
+.lazyloaded {
+  filter: blur(0);
+}
