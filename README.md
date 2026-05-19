@@ -34,4 +34,4 @@ src/
 └── data/                 # Contenido estático (servicios, proyectos, FAQs)
 
 
-![Mapa de Arquitectura de Innovafy Web](./docs/arquitectura.png)
+![Mapa de Arquitectura de Innovafy Web](./docs/assets/arquitectura.png)
