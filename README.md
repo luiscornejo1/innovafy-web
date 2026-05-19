@@ -34,40 +34,26 @@ src/
 └── data/                 # Contenido estático (servicios, proyectos, FAQs)
 
 
-mindmap
-  root((Innovafy Web<br/>Architecture))
-    Framework Core
-      Next.js
-      App Router
-    UI & Structure
-      layouts
-        src/app/layout.tsx
-        src/app/page.tsx
-      styles
-        src/app/globals.css
-    Animation Stack
-      Motion
-        Microinteractions
-        Transitions
-      GSAP
-        Scroll Reveals
-        Sequences
-      Three.js
-        3D Hero Background
-      Swiper
-        Carousels
-        Testimonials
-      Lenis
-        Smooth Scroll
-      LazySizes
-        Image Optimization
-    Project Organization
-      src/components
-        sections
-        ui
-        three
-      src/lib
-        Helpers
-        Configs
-      src/data
-        Static Content
+graph LR
+    Root[🚀 Innovafy Web] --> Core(Framework Core)
+    Core --> Core1[Next.js App Router]
+
+    Root --> UI(UI & Layout)
+    UI --> UI1[src/app/layout.tsx]
+    UI --> UI2[src/app/page.tsx]
+    UI --> UI3[src/app/globals.css]
+
+    Root --> Anim(Animation Stack)
+    Anim --> A1[Motion: Microinteracciones]
+    Anim --> A2[GSAP: Viewport Reveals]
+    Anim --> A3[Three.js: Fondo 3D Hero]
+    Anim --> A4[Swiper: Carruseles]
+    Anim --> A5[Lenis: Smooth Scroll]
+    Anim --> A6[LazySizes: Lazy-load Imágenes]
+
+    Root --> Org(Project Organization)
+    Org --> O1[src/components/sections]
+    Org --> O2[src/components/ui]
+    Org --> O3[src/components/three]
+    Org --> O4[src/lib]
+    Org --> O5[src/data]
