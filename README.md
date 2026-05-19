@@ -32,6 +32,10 @@ src/
 │   └── three/            # Escenas, modelos y shaders de Three.js
 ├── lib/                  # Helpers, utilidades y configuraciones
 └── data/                 # Contenido estático (servicios, proyectos, FAQs)
+```
 
+---
+
+## 🧱 Diagrama de Arquitectura
 
 ![Mapa de Arquitectura de Innovafy Web](docs/assets/arquitectura.png)
