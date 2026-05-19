@@ -24,15 +24,14 @@ import {
 } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
-import ThreeBackground from "./ThreeBackground";
+
+import Hero from "./Hero";
 
 export default function AgencyApp() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
-  const { scrollYProgress } = useScroll();
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-  const heroScale = useTransform(scrollYProgress, [0, 0.3], [1, 0.95]);
+
   const gsapScope = useRef<HTMLDivElement>(null);
 
   const cursorX = useMotionValue(0);
@@ -345,129 +344,7 @@ export default function AgencyApp() {
         )}
       </AnimatePresence>
 
-      <section className="relative min-h-[100vh] flex items-center justify-center px-6 lg:px-12 pt-32 pb-20 overflow-hidden">
-        <motion.div
-          animate={{
-            x: [0, 100, 0],
-            y: [0, -100, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-20 right-[10%] w-[500px] h-[500px] bg-gradient-to-br from-pink-400 via-purple-400 to-blue-400 rounded-full blur-3xl opacity-30"
-        />
-        <motion.div
-          animate={{
-            x: [0, -80, 0],
-            y: [0, 100, 0],
-            scale: [1, 1.3, 1],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1,
-          }}
-          className="absolute bottom-20 left-[15%] w-[400px] h-[400px] bg-gradient-to-br from-blue-400 via-cyan-400 to-purple-400 rounded-full blur-3xl opacity-30"
-        />
-        <motion.div
-          animate={{
-            x: [0, 50, 0],
-            y: [0, -50, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2,
-          }}
-          className="absolute top-1/2 left-1/2 w-[350px] h-[350px] bg-gradient-to-br from-purple-400 via-pink-400 to-orange-400 rounded-full blur-3xl opacity-20"
-        />
-
-        <div className="absolute inset-0 pointer-events-none">
-          <ThreeBackground className="absolute inset-0 w-full h-full opacity-80" />
-        </div>
-
-        <motion.div style={{ opacity: heroOpacity, scale: heroScale }} className="max-w-6xl mx-auto text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="mb-8"
-          >
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <motion.div animate={{ rotate: [0, 360] }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }}>
-                <Award className="w-8 h-8 text-blue-600" />
-              </motion.div>
-              <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 2, repeat: Infinity }}>
-                <Star className="w-8 h-8 text-yellow-500" />
-              </motion.div>
-              <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}>
-                <TrendingUp className="w-8 h-8 text-green-600" />
-              </motion.div>
-            </div>
-            <p className="text-sm uppercase tracking-widest text-neutral-500 mb-2">Award-Winning Agency</p>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight mb-8 leading-[0.9]"
-          >
-            <motion.span initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="block">
-              rebel
-            </motion.span>
-            <motion.span
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="block bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"
-            >
-              against
-            </motion.span>
-            <motion.span initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.6 }} className="block">
-              boring
-            </motion.span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="text-lg md:text-xl text-neutral-600 max-w-3xl mx-auto mb-12"
-          >
-            We're a creative agency specializing in web design, branding, and digital marketing.
-            <span className="block mt-2 font-medium">Refuse to blend in.</span>
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <motion.button
-              whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)" }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition-colors shadow-lg"
-            >
-              Start your project
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 border-2 border-neutral-300 text-neutral-700 rounded-full font-medium hover:border-neutral-400 transition-colors"
-            >
-              View our work
-            </motion.button>
-          </motion.div>
-        </motion.div>
-      </section>
+      <Hero />
 
       <section className="py-16 px-6 lg:px-12 bg-white">
         <div ref={gsapScope} className="max-w-[1200px] mx-auto">
