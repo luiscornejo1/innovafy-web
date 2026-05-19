@@ -27,17 +27,7 @@ export default function Hero() {
         }
       );
 
-      // Simple parallax on scroll for the background blobs
-      gsap.to(".bg-blob", {
-        yPercent: 30,
-        ease: "none",
-        scrollTrigger: {
-          trigger: container.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
+
     }, container);
 
     return () => ctx.revert();
@@ -46,25 +36,8 @@ export default function Hero() {
   return (
     <section
       ref={container}
-      className="relative min-h-screen flex flex-col justify-center px-6 lg:px-12 pt-32 pb-20 overflow-hidden bg-[#f8f9fa]"
+      className="relative min-h-screen flex flex-col justify-center px-6 lg:px-12 pt-32 pb-20 overflow-hidden bg-transparent"
     >
-      {/* Fluid Mesh Gradient Background */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-        <div
-          className="bg-blob absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] rounded-full mix-blend-multiply filter blur-[120px] animate-pulse opacity-60"
-          style={{ backgroundColor: "#ff00ff", animationDuration: "8s" }}
-        />
-        <div
-          className="bg-blob absolute top-[10%] right-[-10%] w-[50vw] h-[50vw] rounded-full mix-blend-multiply filter blur-[120px] animate-pulse opacity-60"
-          style={{ backgroundColor: "#00ffff", animationDuration: "10s" }}
-        />
-        <div
-          className="bg-blob absolute bottom-[-10%] left-[20%] w-[70vw] h-[70vw] rounded-full mix-blend-multiply filter blur-[140px] animate-pulse opacity-50"
-          style={{ backgroundColor: "#0000ff", animationDuration: "12s" }}
-        />
-        <div className="bg-blob absolute top-[30%] left-[30%] w-[40vw] h-[40vw] rounded-full bg-white opacity-80 mix-blend-overlay filter blur-[100px]" />
-      </div>
-
       <div className="relative z-10 w-full max-w-[1400px] mx-auto flex flex-col justify-center flex-1">
         {/* Massive Typography */}
         <div className="flex flex-col w-full text-[14vw] md:text-[15vw] leading-[0.75] font-black tracking-[-0.04em] text-neutral-950 uppercase select-none">

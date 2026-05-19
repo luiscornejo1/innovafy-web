@@ -7,7 +7,7 @@ type PageShellProps = {
 
 export default function PageShell({ title, description }: PageShellProps) {
   return (
-    <main className="min-h-screen bg-white text-neutral-900 px-6 lg:px-12 py-24">
+    <main className="min-h-screen bg-transparent text-neutral-900 px-6 lg:px-12 py-24">
       <div className="max-w-4xl mx-auto">
         <Link href="/" className="text-sm font-medium text-blue-600 hover:text-blue-700">
           ← Volver al inicio

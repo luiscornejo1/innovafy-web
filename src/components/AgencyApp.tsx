@@ -196,7 +196,7 @@ export default function AgencyApp() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-transparent">
       <motion.div
         className="fixed w-8 h-8 border-2 border-blue-500 rounded-full pointer-events-none z-50 mix-blend-difference hidden lg:block"
         style={{
@@ -346,7 +346,7 @@ export default function AgencyApp() {
 
       <Hero />
 
-      <section className="py-16 px-6 lg:px-12 bg-white">
+      <section className="py-16 px-6 lg:px-12 bg-transparent">
         <div ref={gsapScope} className="max-w-[1200px] mx-auto">
           <p className="gsap-fade text-sm uppercase tracking-widest text-neutral-500 mb-8 text-center">
             Trusted by forward-thinking teams
@@ -368,7 +368,7 @@ export default function AgencyApp() {
         </div>
       </section>
 
-      <section id="services" className="relative py-24 px-6 lg:px-12 bg-white overflow-hidden">
+      <section id="services" className="relative py-24 px-6 lg:px-12 bg-transparent overflow-hidden">
         <motion.div
           animate={{
             x: [0, -50, 0],
@@ -472,13 +472,12 @@ export default function AgencyApp() {
                           repeat: Infinity,
                           ease: "linear",
                         }}
-                        className={`absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-br ${
-                          i === 0
+                        className={`absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-br ${i === 0
                             ? "from-green-400 to-cyan-400"
                             : i === 1
                               ? "from-pink-400 to-red-400"
                               : "from-purple-400 to-blue-400"
-                        } rounded-full blur-3xl opacity-20`}
+                          } rounded-full blur-3xl opacity-20`}
                       />
                     </div>
                   </div>
@@ -578,15 +577,14 @@ export default function AgencyApp() {
                     className="absolute inset-0 -z-10"
                   >
                     <div
-                      className={`w-full h-full rounded-full bg-gradient-to-br ${
-                        i === 0
+                      className={`w-full h-full rounded-full bg-gradient-to-br ${i === 0
                           ? "from-blue-100 to-cyan-100"
                           : i === 1
                             ? "from-purple-100 to-pink-100"
                             : i === 2
                               ? "from-green-100 to-emerald-100"
                               : "from-orange-100 to-red-100"
-                      } opacity-0 group-hover:opacity-50 transition-opacity blur-xl`}
+                        } opacity-0 group-hover:opacity-50 transition-opacity blur-xl`}
                     />
                   </motion.div>
                 </motion.div>
@@ -707,14 +705,13 @@ export default function AgencyApp() {
                         className="absolute inset-0"
                         style={{
                           background: `linear-gradient(45deg,
-                            ${
-                              i === 0
-                                ? "#3b82f6, #8b5cf6, #ec4899"
-                                : i === 1
-                                  ? "#10b981, #06b6d4, #6366f1"
-                                  : i === 2
-                                    ? "#f59e0b, #ef4444, #8b5cf6"
-                                    : "#ec4899, #f97316, #eab308"
+                            ${i === 0
+                              ? "#3b82f6, #8b5cf6, #ec4899"
+                              : i === 1
+                                ? "#10b981, #06b6d4, #6366f1"
+                                : i === 2
+                                  ? "#f59e0b, #ef4444, #8b5cf6"
+                                  : "#ec4899, #f97316, #eab308"
                             })`,
                           backgroundSize: "200% 200%",
                           opacity: 0.8,
@@ -854,7 +851,7 @@ export default function AgencyApp() {
         </div>
       </section>
 
-      <section className="relative py-24 px-6 lg:px-12 bg-white overflow-hidden">
+      <section className="relative py-24 px-6 lg:px-12 bg-transparent overflow-hidden">
         <motion.div
           animate={{
             rotate: [0, 360],

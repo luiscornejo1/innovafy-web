@@ -5,10 +5,15 @@ export const metadata = {
   description: "Innovafy creative agency landing page",
 };
 
+import GlobalBackground from "../components/GlobalBackground";
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
-      <body className="bg-white text-neutral-900">{children}</body>
+      <body className="bg-transparent text-neutral-900">
+        <GlobalBackground />
+        {children}
+      </body>
     </html>
   );
 }
