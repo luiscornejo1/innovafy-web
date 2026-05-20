@@ -1,6 +1,5 @@
 "use client";
 
-import "lazysizes";
 import { useEffect, useRef, useState } from "react";
 import {
   AnimatePresence,
@@ -28,33 +27,9 @@ import { Autoplay, Pagination } from "swiper/modules";
 import Hero from "./Hero";
 
 export default function AgencyApp() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
 
   const gsapScope = useRef<HTMLDivElement>(null);
-
-  const cursorX = useMotionValue(0);
-  const cursorY = useMotionValue(0);
-  const springConfig = { damping: 25, stiffness: 200 };
-  const cursorXSpring = useSpring(cursorX, springConfig);
-  const cursorYSpring = useSpring(cursorY, springConfig);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      cursorX.set(e.clientX);
-      cursorY.set(e.clientY);
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [cursorX, cursorY]);
-
-  useEffect(() => {
-    if (!menuOpen) {
-      setServicesOpen(false);
-    }
-  }, [menuOpen]);
 
   useEffect(() => {
     if (!gsapScope.current) {
@@ -73,6 +48,7 @@ export default function AgencyApp() {
 
     return () => ctx.revert();
   }, []);
+
 
   const services = [
     {
@@ -197,153 +173,6 @@ export default function AgencyApp() {
 
   return (
     <div className="min-h-screen bg-transparent">
-      <motion.div
-        className="fixed w-8 h-8 border-2 border-blue-500 rounded-full pointer-events-none z-50 mix-blend-difference hidden lg:block"
-        style={{
-          left: cursorXSpring,
-          top: cursorYSpring,
-          translateX: "-50%",
-          translateY: "-50%",
-        }}
-      />
-      <motion.div
-        className="fixed w-2 h-2 bg-blue-500 rounded-full pointer-events-none z-50 mix-blend-difference hidden lg:block"
-        style={{
-          left: cursorX,
-          top: cursorY,
-          translateX: "-50%",
-          translateY: "-50%",
-        }}
-      />
-
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed top-0 left-0 right-0 z-50"
-      >
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-          <div className="flex justify-between items-center h-20">
-            <Link href="/" className="text-2xl font-bold tracking-tight">
-              INNOVAFY
-            </Link>
-
-            <div className="flex items-center gap-3">
-              <motion.div whileHover={{ scale: 1.03 }} className="hidden sm:inline-flex">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-black text-white text-sm font-medium"
-                >
-                  Hire us
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </motion.div>
-              <motion.button
-                onClick={() => setMenuOpen((prev) => !prev)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-11 h-11 rounded-full border border-neutral-900/20 bg-white/90 backdrop-blur-sm flex items-center justify-center"
-              >
-                {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-              </motion.button>
-            </div>
-          </div>
-        </div>
-      </motion.nav>
-
-      <AnimatePresence>
-        {menuOpen && (
-          <>
-            <motion.button
-              type="button"
-              className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setMenuOpen(false)}
-            />
-
-            <motion.aside
-              initial={{ opacity: 0, y: -20, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.98 }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed top-6 right-6 z-50 w-[280px] sm:w-[320px] bg-white text-neutral-900 rounded-3xl shadow-2xl p-6"
-            >
-              <div className="flex justify-end">
-                <button
-                  onClick={() => setMenuOpen(false)}
-                  className="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
-              <nav className="mt-6 space-y-4 text-lg font-semibold">
-                <Link href="/work" onClick={() => setMenuOpen(false)} className="block hover:text-blue-600 transition-colors">
-                  Work
-                </Link>
-                <Link href="/agency" onClick={() => setMenuOpen(false)} className="block hover:text-blue-600 transition-colors">
-                  Agency
-                </Link>
-                <button
-                  onClick={() => setServicesOpen((prev) => !prev)}
-                  className="w-full flex items-center justify-between hover:text-blue-600 transition-colors"
-                >
-                  Services
-                  <motion.span animate={{ rotate: servicesOpen ? 45 : 0 }} className="text-2xl leading-none">
-                    +
-                  </motion.span>
-                </button>
-
-                <AnimatePresence>
-                  {servicesOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      className="pl-4 text-base font-medium text-neutral-600 space-y-2 overflow-hidden"
-                    >
-                      {services.map((service) => (
-                        <Link
-                          key={service.title}
-                          href="/services"
-                          onClick={() => setMenuOpen(false)}
-                          className="block hover:text-blue-600 transition-colors"
-                        >
-                          {service.title}
-                        </Link>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                <Link href="/blog" onClick={() => setMenuOpen(false)} className="block hover:text-blue-600 transition-colors">
-                  Blog
-                </Link>
-                <Link href="/culture" onClick={() => setMenuOpen(false)} className="block hover:text-blue-600 transition-colors">
-                  Culture
-                </Link>
-                <Link href="/contact" onClick={() => setMenuOpen(false)} className="block hover:text-blue-600 transition-colors">
-                  Contact
-                </Link>
-              </nav>
-
-              <motion.div whileHover={{ scale: 1.03 }}>
-                <Link
-                  href="/contact"
-                  className="mt-8 inline-flex items-center justify-between w-full px-5 py-3 rounded-full border border-neutral-300 text-sm font-medium"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Start your project
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </motion.div>
-            </motion.aside>
-          </>
-        )}
-      </AnimatePresence>
-
       <Hero />
 
       <section className="py-16 px-6 lg:px-12 bg-transparent">
@@ -354,10 +183,11 @@ export default function AgencyApp() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 items-center">
             {clientLogos.map((logo) => (
               <div key={logo.name} className="gsap-fade flex items-center justify-center rounded-2xl bg-neutral-50 p-4">
+                {/* TODO: Reemplaza data-src por la URL real de tu logo */}
                 <img
-                  className="lazyload max-h-10 w-auto opacity-80 hover:opacity-100 transition"
-                  data-src={logo.src}
-                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+                  className="max-h-10 w-auto opacity-80 hover:opacity-100 transition"
+                  src={logo.src}
+                  loading="lazy"
                   width={220}
                   height={90}
                   alt={logo.name}
