@@ -114,51 +114,51 @@ export default function WebDesignWorkflow() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="h-screen w-full bg-transparent overflow-hidden relative flex flex-col pt-24 pb-12">
+    <section ref={sectionRef} className="h-screen w-full bg-transparent overflow-hidden relative flex flex-col pt-28 pb-12">
       
       {/* Título estático */}
-      <div className="px-6 lg:px-12 max-w-[1600px] mx-auto w-full mb-12 flex-shrink-0">
-        <h2 className="text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight text-neutral-900 mb-4">
+      <div className="px-6 lg:px-12 max-w-[1600px] mx-auto w-full mb-12 lg:mb-16 flex-shrink-0 relative z-10">
+        <h2 className="text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight text-neutral-900 mb-4 drop-shadow-sm">
           Website workflow.
         </h2>
-        <p className="text-lg md:text-xl text-neutral-600 font-medium">
+        <p className="text-lg md:text-xl text-neutral-800 font-medium drop-shadow-sm">
           Here's an overview of a medium-sized, 14 week website project.
         </p>
       </div>
 
       {/* Contenedor principal que se moverá horizontalmente */}
-      <div className="flex-1 relative w-full flex items-center">
-        <div ref={scrollContainerRef} className="absolute left-6 lg:left-12 flex gap-8 lg:gap-12 items-center">
+      <div className="flex-1 relative w-full flex items-start">
+        <div ref={scrollContainerRef} className="absolute left-6 lg:left-12 flex gap-8 lg:gap-12 items-start">
           
           {WORKFLOW_STEPS.map((step, index) => (
             <div 
               key={step.id} 
-              className="w-[85vw] md:w-[600px] lg:w-[800px] bg-white rounded-3xl rounded-tr-[60px] lg:rounded-tr-[100px] p-6 lg:p-12 shadow-xl border border-neutral-100 flex flex-col md:flex-row gap-8 lg:gap-12 flex-shrink-0"
+              className="w-[85vw] md:w-[600px] lg:w-[750px] bg-[#f4f4f5] rounded-none rounded-tr-[80px] lg:rounded-tr-[100px] p-6 lg:p-10 flex flex-col md:flex-row gap-6 lg:gap-10 flex-shrink-0 items-center"
             >
               {/* Imagen/Gradiente circular */}
-              <div className="w-full md:w-[250px] lg:w-[300px] aspect-square rounded-full overflow-hidden flex-shrink-0 relative group">
+              <div className="w-[180px] md:w-[200px] lg:w-[220px] aspect-square rounded-full overflow-hidden flex-shrink-0 relative group">
                 <div className={`absolute inset-0 ${step.gradient} mix-blend-multiply opacity-80 z-10 transition-opacity duration-500 group-hover:opacity-40`}></div>
                 <img src={step.image} alt={step.title} className="w-full h-full object-cover filter grayscale contrast-125" />
               </div>
 
               {/* Contenido de la tarjeta */}
               <div className="flex-1 flex flex-col justify-center">
-                <div className="flex items-center gap-4 mb-6">
-                  <h3 className="text-3xl lg:text-4xl font-medium text-neutral-900">{step.title}</h3>
-                  <span className="px-3 py-1 text-sm font-medium border border-neutral-300 rounded-md text-neutral-600">
+                <div className="flex items-center gap-4 mb-3">
+                  <h3 className="text-3xl lg:text-[40px] tracking-tight font-medium text-neutral-900 leading-none">{step.title}</h3>
+                  <span className="px-2 py-1 text-[11px] lg:text-[12px] font-medium border border-neutral-300 rounded text-neutral-600">
                     {step.time}
                   </span>
                 </div>
                 
-                <p className="text-neutral-600 mb-8 leading-relaxed">
+                <p className="text-neutral-700 leading-relaxed text-[14px] lg:text-[15px]">
                   {step.description}
                 </p>
 
-                <div>
-                  <p className="text-sm font-medium text-neutral-500 mb-3">Work involved</p>
+                <div className="mt-5">
+                  <p className="text-[13px] font-medium text-neutral-500 mb-2">Work involved</p>
                   <div className="flex flex-wrap gap-2">
                     {step.tags.map(tag => (
-                      <span key={tag} className="px-3 py-1.5 bg-neutral-900 text-white text-xs lg:text-sm font-medium rounded-md">
+                      <span key={tag} className="px-3 py-1.5 bg-[#0a0a0a] text-white text-[12px] font-medium rounded-sm">
                         {tag}
                       </span>
                     ))}
@@ -172,19 +172,17 @@ export default function WebDesignWorkflow() {
       </div>
 
       {/* Línea de tiempo (Timeline) en la parte inferior */}
-      <div className="h-24 w-full relative overflow-hidden flex-shrink-0 mt-8">
-        <div ref={timelineRef} className="absolute top-1/2 left-6 lg:left-12 flex items-center h-[1px] bg-neutral-300" style={{ width: '400vw' }}>
+      <div className="absolute bottom-4 lg:bottom-12 left-0 h-24 w-full overflow-hidden z-20 pointer-events-none">
+        <div ref={timelineRef} className="absolute top-1/2 left-6 lg:left-12 flex items-center h-[1px] bg-neutral-400" style={{ width: '400vw' }}>
           {WORKFLOW_STEPS.map((step, index) => (
             <div 
               key={`timeline-${step.id}`}
-              // El ancho del contenedor de cada marcador debe coincidir aproximadamente con el ancho de las tarjetas (800px) + el gap (48px)
-              // Aquí usamos un valor en píxeles aproximado para mantenerlo alineado
               className="w-[85vw] md:w-[648px] lg:w-[848px] flex-shrink-0 relative flex justify-center"
             >
                {/* Línea decorativa vertical */}
-               <div className="absolute top-[-24px] left-1/2 w-[1px] h-6 bg-neutral-300"></div>
+               <div className="absolute top-[-24px] left-1/2 w-[1px] h-6 bg-neutral-400 pointer-events-auto"></div>
                {/* Caja de semana */}
-               <div className="px-4 py-1.5 bg-white border border-neutral-300 rounded-md text-sm font-medium text-neutral-700 z-10 transform -translate-y-1/2 shadow-sm">
+               <div className="px-3 py-1 bg-white border border-neutral-300 rounded text-[13px] font-medium text-neutral-800 z-10 transform -translate-y-1/2 pointer-events-auto">
                   {step.weekMark}
                </div>
             </div>
