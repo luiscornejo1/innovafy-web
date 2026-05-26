@@ -82,12 +82,13 @@ export default function KotaPhilosophy() {
       ref={sectionRef}
       className="relative bg-[#f0ece5] text-[#0A0A0A] pt-28 md:pt-32 pb-0 overflow-hidden"
     >
-      <div className="editorial-container">
+      {/* Contenedor con márgenes laterales aumentados */}
+      <div className="max-w-[1600px] mx-auto px-8 md:px-12 lg:px-20">
         {/* GRID SIN ESPACIO */}
         <div className="grid lg:grid-cols-2 gap-0">
           {/* IZQUIERDA */}
           <div className="flex flex-col">
-            <span className="philosophy-our text-8xl md:text-9xl lg:text-[9rem] font-normal tracking-[-0.03em] leading-[0.85] ml-8">
+            <span className="philosophy-our text-8xl md:text-9xl lg:text-[9rem] font-normal tracking-[-0.03em] leading-[0.85] ml-2">
               OUR
             </span>
             <span className="philosophy-values text-8xl md:text-9xl lg:text-[9rem] font-normal tracking-[-0.03em] leading-[0.85] ml-22 md:ml-26 lg:ml-36">
