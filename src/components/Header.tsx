@@ -6,16 +6,16 @@ import { AnimatePresence, motion } from "motion/react";
 
 // TODO: Cambia los nombres de los servicios del menú desplegable aquí
 const MENU_SERVICES = [
-  "Web Design",
-  "Branding",
-  "Digital Marketing",
+  { label: "Web Design", href: "/services/web-design" },
+  { label: "Branding", href: "/services/branding" },
+  { label: "Digital Marketing", href: "/services/digital-marketing" },
 ];
 
 // TODO: Cambia los links del menú desplegable aquí
 const MENU_LINKS = [
   { label: "Work", href: "/work" },
   { label: "Agency", href: "/agency" },
-  { label: "Services", href: "/services" },
+  { label: "Services", href: "/services/web-design" },
   { label: "Blog", href: "/blog" },
   { label: "Culture", href: "/culture" },
   { label: "Contact", href: "/contact" },
@@ -126,12 +126,12 @@ export default function Header() {
                                   >
                                     {MENU_SERVICES.map((service) => (
                                       <Link
-                                        key={service}
-                                        href="/services"
+                                        key={service.label}
+                                        href={service.href}
                                         onClick={() => setMenuOpen(false)}
                                         className="block hover:text-blue-600 transition-colors"
                                       >
-                                        {service}
+                                        {service.label}
                                       </Link>
                                     ))}
                                   </motion.div>
