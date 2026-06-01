@@ -6,9 +6,9 @@ import { AnimatePresence, motion } from "motion/react";
 
 // TODO: Cambia los nombres de los servicios del menú desplegable aquí
 const MENU_SERVICES = [
-  { label: "Web Design", href: "/services/web-design" },
-  { label: "Branding", href: "/services/branding" },
-  { label: "Digital Marketing", href: "/services/digital-marketing" },
+  { label: "Desarrollo Web", href: "/services/web-design" },
+  { label: "Experencia de Marca y Diseño Digital", href: "/services/branding" },
+  { label: "Automatizacion con IA", href: "/services/digital-marketing" },
 ];
 
 // TODO: Cambia los links del menú desplegable aquí
