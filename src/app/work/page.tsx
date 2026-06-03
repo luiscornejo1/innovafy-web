@@ -1,7 +1,7 @@
 import { Section } from "lucide-react";
-import HeroWork from "../../components/HeroWork";
+import HeroWork from "./components/HeroWork";
 import PageShell from "../../components/PageShell";
-import SectionWorkCard from "../../components/SectionWorkCard";
+import SectionWorkCard from "./components/SectionWorkCard";
 
 export default function WorkPage() {
   return (
