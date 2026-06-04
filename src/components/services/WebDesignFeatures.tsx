@@ -12,51 +12,42 @@ if (typeof window !== "undefined") {
 // TODO: Cambia los textos, URLs de imágenes y colores de fondo según tu preferencia.
 const FEATURES = [
   {
-    id: "creative-web-design",
-    title: "Creative web design.",
+    id: "potencia-tu-marca",
+    title: "Potencia tu marca",
     description:
-      "Drawing inspiration from different mediums, trends and audiences, we craft thoughtful, creative websites that help brands put their best digital foot forwards.",
+      "Combinamos diseño innovador, tecnología de vanguardia y contenido estratégico para crear sitios web visualmente atractivos y altamente funcionales. Aproveche el poder de las experiencias digitales altamente atractivas para llevar su marca al siguiente nivel.",
     // Cambia la imagen aquí
-    image: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1000&auto=format&fit=crop",
-    bgColor: "bg-[#FF5C35]", // Naranja similar a KOTA
+    image: "/assets/11.jpg",
+    bgColor: "bg-inovafy-blue", // Azul principal
     reverse: false,
   },
   {
-    id: "web-development",
-    title: "Web development.",
+    id: "experiencias-humanas",
+    title: "Experiencias Humanas",
     description:
-      "Powered by front-end technologies and forward-thinking concepts, we make animated and interactive elements that enhance your website without slowing it down.",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop",
-    bgColor: "bg-gradient-to-br from-[#c1e8ff] to-[#f4f186]", // Gradiente azul/amarillo
+      "Ofrezca una experiencia de usuario inmersiva que capture la esencia de su marca y conecte con su público objetivo. Desde una navegación intuitiva hasta una narrativa envolvente, cada sitio web está meticulosamente diseñado para captar la atención y dejar una huella imborrable.",
+    image: "/assets/12.jpg",
+    bgColor: "bg-inovafy-blue-xl", // Azul claro (XL)
     reverse: true,
   },
   {
-    id: "copywriting",
-    title: "Copywriting.",
+    id: "robusto-seguro",
+    title: "Robusto, Seguro, Flexible",
     description:
-      "We craft purposeful copy that packs a punch – not only telling your story, but selling your brand.",
-    image: "https://images.unsplash.com/photo-1455390582262-044cdead2708?q=80&w=1000&auto=format&fit=crop",
-    bgColor: "bg-[#f4f186]", // Amarillo
+      "Cada sitio web que desarrollamos se apoya en una infraestructura segura y de alto rendimiento, adaptada a las necesidades de la organización. Esto garantiza que su presencia digital pueda crecer con la demanda y ofrecer la flexibilidad necesaria para satisfacer las necesidades de su negocio a lo largo del tiempo.",
+    image: "/assets/13.jpg",
+    bgColor: "bg-inovafy-ink2", // Fondo oscuro (Ink2)
     reverse: false,
   },
   {
-    id: "ecommerce",
-    title: "E-Commerce.",
+    id: "asociaciones",
+    title: "Asociaciones gratificantes",
     description:
-      "Transform your online store with seamless, high-converting e-commerce solutions tailored to your unique brand needs and designed to maximize sales.",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=1000&auto=format&fit=crop",
-    bgColor: "bg-[#d4c1ff]", // Morado suave
+      "Detrás de cada sitio web de primera categoría hay una colaboración estrecha entre la agencia y el cliente. Trabajamos codo a codo con usted para garantizar resultados que ofrezcan experiencias extraordinarias y generen beneficios. Los premios son importantes, pero su éxito es mucho más valioso.",
+    image: "/assets/14.jpg",
+    bgColor: "bg-inovafy-blue-l", // Azul claro (Glow)
     reverse: true,
-  },
-  {
-    id: "wordpress",
-    title: "WordPress.",
-    description:
-      "Robust, scalable, and easy-to-manage WordPress websites that give you full control over your content and digital presence.",
-    image: "https://images.unsplash.com/photo-1616469829581-73993eb86b02?q=80&w=1000&auto=format&fit=crop",
-    bgColor: "bg-[#ffc1e3]", // Rosa suave
-    reverse: false,
-  },
+  }
 ];
 
 export default function WebDesignFeatures() {
@@ -139,7 +130,7 @@ export default function WebDesignFeatures() {
                 href="/contact"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-neutral-300 text-sm font-medium hover:bg-black hover:text-white hover:border-black transition-colors group"
               >
-                Find out more
+                Descubrir más
                 <svg
                   className="w-4 h-4 transform group-hover:translate-x-1 transition-transform"
                   fill="none"

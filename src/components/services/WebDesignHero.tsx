@@ -14,14 +14,14 @@ export default function WebDesignHero() {
       gsap.fromTo(
         ".reveal-text",
         {
-          y: "100%",
-          clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
+          y: "110%",
+          opacity: 0,
         },
         {
           y: "0%",
-          clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+          opacity: 1,
           duration: 1.2,
-          stagger: 0.15,
+          stagger: 0.1,
           ease: "power4.out",
         }
       );
@@ -40,51 +40,44 @@ export default function WebDesignHero() {
   return (
     <section
       ref={container}
-      className="relative min-h-screen flex flex-col justify-center px-6 lg:px-12 pt-32 pb-20 bg-transparent"
+      className="relative flex flex-col justify-center px-6 lg:px-12 pt-40 pb-0 bg-transparent overflow-hidden"
     >
-      <div className="max-w-[1400px] w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center flex-1">
+      <div className="max-w-[1500px] w-full mx-auto flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-4">
         
-        {/* Left Content */}
-        <div className="flex flex-col justify-center z-10">
-          <div className="fade-up flex items-center gap-4 mb-8 lg:mb-12">
-            <div className="h-[1px] w-8 bg-neutral-900"></div>
-            <span className="text-xs md:text-sm font-medium tracking-widest uppercase text-neutral-600">
-              Creative web design and development services
-            </span>
-          </div>
-
-          <h1 className="text-[12vw] sm:text-[10vw] lg:text-[7vw] leading-[0.85] font-black tracking-[-0.04em] text-neutral-950">
-            <div className="overflow-hidden pb-2">
-              <div className="reveal-text transform origin-bottom">Welcome to</div>
+        {/* Left Column: Huge Typography */}
+        <div className="flex flex-col z-10 lg:w-[55%]">
+          <h1 className="text-[14vw] sm:text-[12vw] lg:text-[8vw] leading-[0.85] font-normal tracking-tighter text-black">
+            <div className="overflow-hidden pb-2 lg:pb-4">
+              <div className="reveal-text">Sitios web de</div>
             </div>
-            <div className="overflow-hidden pb-2">
-              <div className="reveal-text transform origin-bottom">the digital</div>
+            <div className="overflow-hidden pb-2 lg:pb-4">
+              <div className="reveal-text">primera <span className="font-bold">categoría</span></div>
             </div>
-            <div className="overflow-hidden pb-2">
-              <div className="reveal-text transform origin-bottom">renaissance.</div>
+            <div className="overflow-hidden pb-2 lg:pb-4">
+              <div className="reveal-text">para marcas innovadoras.</div>
             </div>
           </h1>
-
-          <p className="fade-up mt-8 lg:mt-12 text-lg md:text-xl text-neutral-600 max-w-md font-medium leading-relaxed">
-            Crafting the future of websites with enjoyably-creative and technologically-advanced design and development.
-          </p>
         </div>
 
-        {/* Right Content - Circular Image */}
-        <div className="fade-up relative flex justify-center lg:justify-end z-10">
-          <div className="relative w-[80vw] h-[80vw] sm:w-[60vw] sm:h-[60vw] lg:w-[40vw] lg:h-[40vw] max-w-[600px] max-h-[600px] rounded-full overflow-hidden shadow-2xl group">
-            {/* 
-              TODO: Replace this dummy image with your own image or video.
-              Example: src="/images/your-hero-image.jpg"
-            */}
+        {/* Right Column: Circular Image & Paragraph */}
+        <div className="flex flex-col z-10 lg:w-[45%] items-center lg:items-end mt-12 lg:mt-0">
+          
+          {/* Circular Image - Larger size like reference */}
+          <div className="fade-up relative w-[75vw] h-[75vw] md:w-[50vw] md:h-[50vw] lg:w-[42vw] lg:h-[42vw] max-w-[650px] max-h-[650px] rounded-full overflow-hidden mb-12 lg:-mr-12">
             <img 
               src="https://images.unsplash.com/photo-1618761714954-0b8cd0026356?q=80&w=2070&auto=format&fit=crop" 
               alt="Digital renaissance visualization" 
-              className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
+              className="absolute inset-0 w-full h-full object-cover scale-105"
             />
-            {/* Optional gradient overlay to match KOTA's purple vibe */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/40 to-transparent mix-blend-multiply pointer-events-none"></div>
           </div>
+
+          {/* Paragraph placed below the circle image, aligned to the left of the column */}
+          <div className="fade-up max-w-[340px] w-full text-left self-start lg:ml-12">
+            <p className="text-base md:text-lg text-black font-normal leading-relaxed">
+              Productos digitales extraordinarios. Aumenta el valor de tu marca con una plataforma rápida, escalable y centrada en la conversión.
+            </p>
+          </div>
+
         </div>
 
       </div>

@@ -44,21 +44,21 @@ export default function Footer() {
       {/* Links Row */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-12">
         <div className="flex gap-6 text-sm text-white/70">
-          <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
-          <Link href="/faqs" className="hover:text-white transition-colors">FAQs</Link>
-          <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+          <Link href="/contact" className="hover:text-white transition-colors">Contacto</Link>
+          <Link href="/faqs" className="hover:text-white transition-colors">Preguntas Frecuentes</Link>
+          <Link href="/privacy" className="hover:text-white transition-colors">Política de Privacidad</Link>
         </div>
 
         <button className="border border-white/30 text-white text-sm px-6 py-3 rounded-full hover:bg-white hover:text-black transition-colors">
-          Sign up to our newsletter
+          Suscríbete a nuestro boletín
         </button>
       </div>
 
       {/* Bottom Row: Sectors + Copyright */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 pt-8 border-t border-white/10">
         <div className="flex flex-wrap items-center gap-3">
-          <span className="text-white/50 text-xs mr-2">Our sectors :</span>
-          {["Agencies", "SaaS and Tech", "B2B Transformation", "Healthcare", "Media & Entertainment", "Retail"].map(
+          <span className="text-white/50 text-xs mr-2">Nuestros sectores :</span>
+          {["Agencias", "SaaS y Tecnología", "Transformación B2B", "Salud", "Medios y Entretenimiento", "Retail"].map(
             (sector) => (
               <span
                 key={sector}

@@ -21,25 +21,25 @@ const PROJECTS = [
     name: "UPP",
     year: "2025",
     // Imagen o GIF de fondo (puedes reemplazar esto por el link a tu GIF o imagen animada)
-    media: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop"
+    media: "/assets/11.jpg"
   },
   {
     id: 2,
     name: "Incentive Games",
     year: "2025",
-    media: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1000&auto=format&fit=crop"
+    media: "/assets/12.jpg"
   },
   {
     id: 3,
     name: "The Goat Agency",
     year: "2025",
-    media: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop"
+    media: "/assets/13.jpg"
   },
   {
     id: 4,
     name: "Bipsync",
     year: "2025",
-    media: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop"
+    media: "/assets/14.jpg"
   }
 ];
 
@@ -94,11 +94,11 @@ export default function WebDesignRelatedProjects() {
         {/* Cabecera: Título y Botón */}
         <div className="projects-header flex flex-col md:flex-row justify-between items-start md:items-end mb-12 lg:mb-16 gap-6">
           <h2 className="text-5xl md:text-6xl lg:text-[80px] font-medium tracking-tight text-white leading-none">
-            Related Projects
+            Proyectos Relacionados
           </h2>
           
           <Link href="#" className="flex items-center gap-3 border border-white rounded-full px-6 py-3 text-sm font-medium text-white hover:bg-white hover:text-black transition-colors">
-            View all projects <ArrowRight size={16} />
+            Ver todos los proyectos <ArrowRight size={16} />
           </Link>
         </div>
 
