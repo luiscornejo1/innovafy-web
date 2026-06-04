@@ -25,6 +25,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 
 import Hero from "./Hero";
+import HomeServices from "./ServicesPanels";
 
 export default function AgencyApp() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
@@ -48,38 +49,6 @@ export default function AgencyApp() {
 
     return () => ctx.revert();
   }, []);
-
-
-  const services = [
-    {
-      title: "Web Design",
-      icon: "01",
-      description: "Creative web design that converts visitors into customers",
-      subServices: [
-        "Creative Web Design",
-        "E-commerce Design",
-        "UX/UI Design",
-        "Responsive Design",
-      ],
-    },
-    {
-      title: "Branding",
-      icon: "02",
-      description: "Strategic brand identity that resonates with your audience",
-      subServices: [
-        "Brand Strategy",
-        "Logo Design",
-        "Brand Guidelines",
-        "Rebranding",
-      ],
-    },
-    {
-      title: "Digital Marketing",
-      icon: "03",
-      description: "Data-driven marketing that delivers measurable results",
-      subServices: ["SEO Strategy", "Content Marketing", "Social Media", "PPC Campaigns"],
-    },
-  ];
 
   const projects = [
     {
@@ -174,149 +143,7 @@ export default function AgencyApp() {
   return (
     <div className="min-h-screen bg-transparent">
       <Hero />
-
-      <section className="py-16 px-6 lg:px-12 bg-transparent">
-        <div ref={gsapScope} className="max-w-[1200px] mx-auto">
-          <p className="gsap-fade text-sm uppercase tracking-widest text-neutral-500 mb-8 text-center">
-            Trusted by forward-thinking teams
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 items-center">
-            {clientLogos.map((logo) => (
-              <div key={logo.name} className="gsap-fade flex items-center justify-center rounded-2xl bg-neutral-50 p-4">
-                {/* TODO: Reemplaza data-src por la URL real de tu logo */}
-                <img
-                  className="max-h-10 w-auto opacity-80 hover:opacity-100 transition"
-                  src={logo.src}
-                  loading="lazy"
-                  width={220}
-                  height={90}
-                  alt={logo.name}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="services" className="relative py-24 px-6 lg:px-12 bg-transparent overflow-hidden">
-        <motion.div
-          animate={{
-            x: [0, -50, 0],
-            y: [0, 50, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-pink-300 via-purple-300 to-blue-300 rounded-full blur-3xl opacity-20"
-        />
-
-        <div className="max-w-[1400px] mx-auto relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="mb-20"
-          >
-            <motion.h2
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6"
-            >
-              What we do
-            </motion.h2>
-          </motion.div>
-
-          <div className="space-y-8">
-            {services.map((service, i) => (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, x: i % 2 === 0 ? -100 : 100 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: i * 0.2 }}
-                className="group"
-              >
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
-                  className="bg-neutral-50 p-8 md:p-12 rounded-3xl cursor-pointer relative overflow-hidden"
-                >
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 rounded-3xl"
-                  />
-
-                  <div className="relative z-10 grid md:grid-cols-2 gap-8 items-center">
-                    <div>
-                      <motion.div
-                        initial={{ opacity: 0.3 }}
-                        whileHover={{ opacity: 1 }}
-                        className="text-8xl md:text-9xl font-bold text-neutral-200 mb-4 group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-500"
-                      >
-                        {service.icon}
-                      </motion.div>
-
-                      <h3 className="text-3xl md:text-4xl font-bold mb-4 group-hover:text-blue-600 transition-colors">{service.title}</h3>
-
-                      <p className="text-lg text-neutral-600 mb-6">{service.description}</p>
-
-                      <motion.button
-                        whileHover={{ x: 10 }}
-                        className="inline-flex items-center gap-2 text-base font-medium text-blue-600 hover:gap-4 transition-all"
-                      >
-                        Find out more
-                        <ArrowRight className="w-5 h-5" />
-                      </motion.button>
-                    </div>
-
-                    <div className="relative">
-                      <div className="grid grid-cols-2 gap-4">
-                        {service.subServices.map((sub, idx) => (
-                          <motion.div
-                            key={sub}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: idx * 0.1 }}
-                            whileHover={{ y: -5, rotate: idx % 2 === 0 ? 2 : -2 }}
-                            className="bg-white p-4 rounded-xl shadow-lg aspect-square flex items-center justify-center text-center"
-                          >
-                            <p className="text-sm font-medium text-neutral-700">{sub}</p>
-                          </motion.div>
-                        ))}
-                      </div>
-
-                      <motion.div
-                        animate={{
-                          scale: [1, 1.2, 1],
-                          rotate: [0, 180, 360],
-                        }}
-                        transition={{
-                          duration: 20,
-                          repeat: Infinity,
-                          ease: "linear",
-                        }}
-                        className={`absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-br ${i === 0
-                            ? "from-green-400 to-cyan-400"
-                            : i === 1
-                              ? "from-pink-400 to-red-400"
-                              : "from-purple-400 to-blue-400"
-                          } rounded-full blur-3xl opacity-20`}
-                      />
-                    </div>
-                  </div>
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <HomeServices />
 
       <section className="relative py-32 px-6 lg:px-12 bg-neutral-50 overflow-hidden">
         <motion.div
@@ -408,12 +235,12 @@ export default function AgencyApp() {
                   >
                     <div
                       className={`w-full h-full rounded-full bg-gradient-to-br ${i === 0
-                          ? "from-blue-100 to-cyan-100"
-                          : i === 1
-                            ? "from-purple-100 to-pink-100"
-                            : i === 2
-                              ? "from-green-100 to-emerald-100"
-                              : "from-orange-100 to-red-100"
+                        ? "from-blue-100 to-cyan-100"
+                        : i === 1
+                          ? "from-purple-100 to-pink-100"
+                          : i === 2
+                            ? "from-green-100 to-emerald-100"
+                            : "from-orange-100 to-red-100"
                         } opacity-0 group-hover:opacity-50 transition-opacity blur-xl`}
                     />
                   </motion.div>
