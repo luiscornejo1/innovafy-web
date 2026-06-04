@@ -58,9 +58,9 @@ export default function WebDesignResults() {
       {/* Título */}
       <div className="mb-12">
         <h2 className="text-5xl md:text-7xl font-medium tracking-tight text-neutral-900 mb-4">
-          Our Results
+          Nuestros Resultados
         </h2>
-        <p className="text-xl text-neutral-600 font-medium">The proof is in the pudding</p>
+        <p className="text-xl text-neutral-600 font-medium">La prueba está en los números</p>
       </div>
 
       {/* Contenedor principal con gradiente */}
@@ -86,7 +86,7 @@ export default function WebDesignResults() {
           </div>
           
           <h3 className="text-3xl md:text-4xl font-medium text-neutral-900 mb-12 max-w-md">
-            increase in organic visits after 1 month
+            incremento en visitas orgánicas en 1 mes
           </h3>
 
           <div>
@@ -94,7 +94,7 @@ export default function WebDesignResults() {
               href="/portfolio/isi-global"
               className="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-neutral-900 text-neutral-900 font-medium hover:bg-neutral-900 hover:text-white transition-colors group"
             >
-              View project
+              Ver proyecto
               <svg
                 className="w-4 h-4 transform group-hover:translate-x-1 transition-transform"
                 fill="none"
@@ -117,7 +117,7 @@ export default function WebDesignResults() {
                <div className="w-2 h-2 rounded-full bg-neutral-600"></div>
             </div>
             <img 
-              src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=600&auto=format&fit=crop" 
+              src="/assets/Frame.jpg" 
               alt="Mockup 1" 
               className="w-full h-auto aspect-[1/2] object-cover"
             />
@@ -130,7 +130,7 @@ export default function WebDesignResults() {
                <div className="w-2 h-2 rounded-full bg-neutral-600"></div>
             </div>
             <img 
-              src="https://images.unsplash.com/photo-1541462608143-67571c6738dd?q=80&w=600&auto=format&fit=crop" 
+              src="/assets/logos_inovafy (1).jpg" 
               alt="Mockup 2" 
               className="w-full h-auto aspect-[1/2] object-cover grayscale opacity-90 mix-blend-luminosity bg-black"
             />
@@ -149,7 +149,7 @@ export default function WebDesignResults() {
                <div className="w-2 h-2 rounded-full bg-neutral-600"></div>
             </div>
             <img 
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=600&auto=format&fit=crop" 
+              src="/assets/logos_inovafy (1)_4.png" 
               alt="Mockup 3" 
               className="w-full h-auto aspect-[1/2] object-cover"
             />

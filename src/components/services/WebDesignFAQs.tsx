@@ -4,28 +4,28 @@ import { useState } from "react";
 
 const FAQS = [
   {
-    question: "How long does a typical web design and development project take?",
-    answer: "A web design and build project can last around 12-14 weeks. But there are always ways to consider your business objectives (such as phased launches), so even if your timescales don't work with this, it's always worth reaching out."
+    question: "¿Cuánto tiempo dura un proyecto típico de diseño y desarrollo web?",
+    answer: "Un proyecto de diseño y desarrollo web puede durar alrededor de 12-14 semanas. Pero siempre hay formas de considerar los objetivos de su empresa (como lanzamientos por fases), así que incluso si sus plazos no se ajustan a esto, siempre vale la pena comunicarse con nosotros."
   },
   {
-    question: "What are the latest trends in web design and development I should know about?",
-    answer: "Currently, we're seeing a big push towards immersive 3D elements, dark mode optimization, micro-interactions, and AI-driven personalization. However, we always prioritize timeless, user-centric design over fleeting trends to ensure your site remains effective for years."
+    question: "¿Cuáles son las últimas tendencias en diseño y desarrollo web que debería conocer?",
+    answer: "Actualmente, vemos un gran impulso hacia elementos 3D inmersivos, optimización para el modo oscuro, micro-interacciones y personalización impulsada por IA. Sin embargo, siempre priorizamos el diseño atemporal y centrado en el usuario sobre las tendencias pasajeras para garantizar que su sitio siga siendo efectivo durante años."
   },
   {
-    question: "How does web design impact SEO and my site's visibility on Google?",
-    answer: "Web design directly affects SEO through site speed, mobile responsiveness, and user experience metrics like bounce rate. A clean, accessible code structure and logical navigation are essential for search engines to properly crawl and index your content."
+    question: "¿Cómo impacta el diseño web en el SEO y la visibilidad de mi sitio en Google?",
+    answer: "El diseño web afecta directamente al SEO a través de la velocidad del sitio, la capacidad de respuesta móvil y las métricas de experiencia del usuario, como la tasa de rebote. Una estructura de código limpia y accesible, junto con una navegación lógica, son esenciales para que los motores de búsqueda rastreen e indexen correctamente su contenido."
   },
   {
-    question: "What's the difference between custom and template-based web design?",
-    answer: "Template-based designs are quicker and cheaper but limit your brand's unique identity and functionality. Custom web design is built from the ground up specifically for your business goals, offering total control over the user journey, superior performance, and seamless scalability."
+    question: "¿Cuál es la diferencia entre un diseño web personalizado y uno basado en plantillas?",
+    answer: "Los diseños basados en plantillas son más rápidos y económicos, pero limitan la identidad única y la funcionalidad de su marca. El diseño web personalizado se construye desde cero específicamente para sus objetivos comerciales, ofreciendo control total sobre el viaje del usuario, rendimiento superior y escalabilidad perfecta."
   },
   {
-    question: "How do I maintain my website once it's live?",
-    answer: "We offer ongoing support and maintenance packages to keep your site secure, fast, and up-to-date. Alternatively, we build our sites on intuitive CMS platforms so your team can easily update content, add pages, and manage the site day-to-day without needing to code."
+    question: "¿Cómo mantengo mi sitio web una vez que está en línea?",
+    answer: "Ofrecemos paquetes de soporte y mantenimiento continuo para mantener su sitio seguro, rápido y actualizado. Alternativamente, construimos nuestros sitios en plataformas CMS intuitivas para que su equipo pueda actualizar contenido fácilmente, agregar páginas y administrar el sitio en el día a día sin necesidad de programar."
   },
   {
-    question: "What should I expect to pay for professional web design and development services?",
-    answer: "Costs vary widely depending on the scope, functionality, and complexity of the project. We offer transparent pricing after our initial discovery phase, ensuring the final product aligns perfectly with both your business goals and your budget."
+    question: "¿Cuánto debería esperar pagar por servicios profesionales de diseño y desarrollo web?",
+    answer: "Los costos varían ampliamente dependiendo del alcance, la funcionalidad y la complejidad del proyecto. Ofrecemos precios transparentes después de nuestra fase de descubrimiento inicial, asegurando que el producto final se alinee perfectamente tanto con sus objetivos comerciales como con su presupuesto."
   }
 ];
 

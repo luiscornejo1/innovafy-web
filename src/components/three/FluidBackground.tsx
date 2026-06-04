@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
-export default function FluidBackground() {
+export default function FluidBackground({ className = "fixed inset-0 z-0 pointer-events-none" }: { className?: string }) {
     const mountRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -14,8 +14,23 @@ export default function FluidBackground() {
         camera.position.z = 1;
 
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        // Use container size instead of window size for better reusability
+        const resizeRendererToDisplaySize = (renderer: THREE.WebGLRenderer) => {
+            const canvas = renderer.domElement;
+            const container = mountRef.current;
+            if (!container) return false;
+            
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+            const needResize = canvas.width !== width || canvas.height !== height;
+            if (needResize) {
+                renderer.setSize(width, height, false);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            }
+            return needResize;
+        };
+        
+        resizeRendererToDisplaySize(renderer);
         mountRef.current.appendChild(renderer.domElement);
 
         const geometry = new THREE.PlaneGeometry(2, 2, 128, 128);
@@ -88,16 +103,28 @@ export default function FluidBackground() {
 
                 void main() {
                     vec3 firstColor = uColor[0];
-                    vec2 seed = (vUv * -uPos) * mix(vUv, uPos, 30.0 * uAmount);
+                    
+                    // Movimiento continuo y suave del fondo
+                    vec2 seed = (vUv * -uPos) * mix(vUv, uPos, 30.0 * uAmount) + vec2(uTime * 0.03, uTime * 0.02);
                     float ml = pow(6.0, 0.5) * -0.01;
                     
-                    float timeOsc = sin(uTime * 0.5); 
-                    float n = cnoise21(seed) + 1.0 * timeOsc;
-                    vec3 color = mix(firstColor, firstColor, cnoise21(seed) / 1000.0);
+                    // En lugar de una oscilación salvaje que inunda la pantalla,
+                    // usamos un pequeño "offset" base más una leve respiración.
+                    // Esto mantiene el fondo blanco predominante, con las manchas de color moviéndose.
+                    float breathe = 0.2 + 0.15 * sin(uTime * 0.5); 
+                    float n = cnoise21(seed) + breathe;
+                    
+                    vec3 color = firstColor;
                     
                     for (int i = 1; i < 5; i++) {
                         float amount = (float(i) + 1.0) * 0.09;
-                        float n2 = smoothstep(amount * timeOsc + ml, amount * timeOsc + ml + amount * timeOsc, n * timeOsc);
+                        // Ya no multiplicamos los límites por la oscilación del tiempo.
+                        // Son fijos, por lo que las manchas nunca colapsan.
+                        float n2 = smoothstep(
+                            amount + ml, 
+                            amount + ml + amount, 
+                            n
+                        );
                         color = mix(color, uColor[i], n2);
                     }
                     
@@ -116,6 +143,9 @@ export default function FluidBackground() {
 
         const clock = new THREE.Clock();
         const animate = () => {
+            if (resizeRendererToDisplaySize(renderer)) {
+                // Resize handled
+            }
             material.uniforms.uTime.value = clock.getElapsedTime() * 0.2;
             renderer.render(scene, camera);
             requestAnimationFrame(animate);
@@ -123,26 +153,22 @@ export default function FluidBackground() {
         animate();
 
         const handleMouseMove = (e: MouseEvent) => {
-            material.uniforms.uRayMouse.value.set(
-                (e.clientX / window.innerWidth) * 2 - 1,
-                -(e.clientY / window.innerHeight) * 2 + 1
-            );
-        };
-
-        const handleResize = () => {
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            const container = mountRef.current;
+            if (!container) return;
+            const rect = container.getBoundingClientRect();
+            // Normalize mouse position relative to container
+            const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+            const y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+            material.uniforms.uRayMouse.value.set(x, y);
         };
 
         window.addEventListener('mousemove', handleMouseMove);
-        window.addEventListener('resize', handleResize);
 
         return () => {
             window.removeEventListener('mousemove', handleMouseMove);
-            window.removeEventListener('resize', handleResize);
             renderer.dispose();
         };
     }, []);
 
-    return <div ref={mountRef} className="fixed inset-0 z-0 pointer-events-none" />;
+    return <div ref={mountRef} className={className} />;
 }

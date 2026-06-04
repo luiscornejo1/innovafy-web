@@ -10,74 +10,57 @@ if (typeof window !== "undefined") {
 
 const WORKFLOW_STEPS = [
   {
-    id: "immersion",
-    title: "Immersion",
-    time: "1 week",
+    id: "idea",
+    title: "De la idea a la ejecución",
+    time: "Capacidad",
     description:
-      "Ahead of the website kick off we'll immerse ourselves in your brief, company, and scope of work. We'll carry out competitor and industry analysis, a brand audit and start formulating a first draft of a sitemap. We'll mood board some visual concept directions if needed for the kick off.",
+      "Desarrollamos el producto íntegramente internamente, desde la estrategia inicial hasta el resultado final. Esto significa que todo lo que hacemos cumple su función y se produce con la máxima calidad.",
     tags: [
-      "Research",
-      "Competitor Analysis",
-      "Industry Analysis",
-      "Mood Boards",
-      "Sitemap Creation",
-      "Formulate KOTA Team",
+      "Estrategia",
+      "Diseño",
+      "Ejecución"
     ],
     gradient: "bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364]",
-    image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=600&auto=format&fit=crop",
-    weekMark: "Week 1",
+    image: "/assets/15.jpg",
+    weekMark: "Estrategia",
   },
   {
-    id: "kick-off",
-    title: "Kick Off Meeting",
-    time: "3 hours",
+    id: "fullstack",
+    title: "Full Stack",
+    time: "Capacidad",
     description:
-      "After an initial intro call to say hi, we will prepare a timeline of milestones, starting with a 'Kick Off' meeting with key stakeholders and the KOTA team assigned to your project. Here we will discuss a range of points so we can get started soon after, including project goals, functionality, inspiration and website structure.",
-    tags: ["Workshop", "Workshop Playback", "Project Timeline"],
+      "Somos un espacio que reúne tanto a generalistas como a especialistas, abarcando bajo un mismo techo el desarrollo de interfaces de usuario, el diseño de interacción, la configuración de CMS y el desarrollo técnico.",
+    tags: ["UI/UX", "CMS", "Frontend", "Backend"],
     gradient: "bg-gradient-to-tr from-[#ff4b2b] to-[#ff416c]",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=600&auto=format&fit=crop",
-    weekMark: "Week 1",
+    image: "/assets/16.jpg",
+    weekMark: "Desarrollo",
   },
   {
-    id: "structure",
-    title: "Structure & UX",
-    time: "2 weeks",
+    id: "neutralidad",
+    title: "Neutralidad tecnológica",
+    time: "Capacidad",
     description:
-      "The most important step in order for us to build a solid foundation. We will wireframe your entire website, ensuring we have a structured content hierarchy and a seamless user journey.",
+      "La mejor tecnología es la que funciona. Escuchamos y observamos constantemente para poder recomendarle la solución óptima para su problema empresarial.",
     tags: [
-      "Sitemap Validation",
-      "User Mapping",
-      "Information Architecture",
-      "UX Design",
-      "Wireframing",
-      "Prototyping",
+      "Consultoría",
+      "Arquitectura",
+      "Soluciones",
     ],
     gradient: "bg-gradient-to-r from-[#4776e6] to-[#8e54e9]",
-    image: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=600&auto=format&fit=crop",
-    weekMark: "Week 2",
+    image: "/assets/17.jpg",
+    weekMark: "Arquitectura",
   },
   {
-    id: "design",
-    title: "UI Design",
-    time: "3 weeks",
+    id: "integrado",
+    title: "Integrado",
+    time: "Capacidad",
     description:
-      "Bringing the wireframes to life. Our design team will apply your brand guidelines, or create a new digital brand identity, to design a beautiful, engaging, and highly converting user interface.",
-    tags: ["UI Design", "Prototyping", "Animations", "Mobile & Desktop Resolutions"],
+      "Colocamos su sitio web en el centro de su ecosistema digital, proporcionando integraciones API seguras y soluciones automatizadas en todos sus sistemas empresariales.",
+    tags: ["APIs", "Automatización", "Sistemas", "Integración"],
     gradient: "bg-gradient-to-bl from-[#f2994a] to-[#f2c94c]",
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=600&auto=format&fit=crop",
-    weekMark: "Week 4",
-  },
-  {
-    id: "development",
-    title: "Development",
-    time: "8 weeks",
-    description:
-      "Our expert front and back-end developers will build your custom website. We ensure pixel-perfect implementation, smooth animations, robust CMS integration, and rigorous cross-browser testing.",
-    tags: ["Front-end", "Back-end", "CMS Integration", "QA Testing", "Launch"],
-    gradient: "bg-gradient-to-br from-[#11998e] to-[#38ef7d]",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=600&auto=format&fit=crop",
-    weekMark: "Week 7",
-  },
+    image: "/assets/18.jpg",
+    weekMark: "Integración",
+  }
 ];
 
 export default function WebDesignWorkflow() {
@@ -119,10 +102,10 @@ export default function WebDesignWorkflow() {
       {/* Título estático */}
       <div className="px-6 lg:px-12 max-w-[1600px] mx-auto w-full mb-12 lg:mb-16 flex-shrink-0 relative z-10">
         <h2 className="text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight text-neutral-900 mb-4 drop-shadow-sm">
-          Website workflow.
+          Experiencias Digitales Extraordinarias.
         </h2>
-        <p className="text-lg md:text-xl text-neutral-800 font-medium drop-shadow-sm">
-          Here's an overview of a medium-sized, 14 week website project.
+        <p className="text-lg md:text-xl text-neutral-800 font-medium drop-shadow-sm max-w-3xl">
+          Aprovechamos nuestras fortalezas: Durante más de 14 años hemos ideado, creado y lanzado productos maravillosos en Internet.
         </p>
       </div>
 

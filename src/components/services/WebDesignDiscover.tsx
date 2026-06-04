@@ -5,9 +5,9 @@ import { ArrowRight } from "lucide-react";
 
 export default function WebDesignDiscover() {
   const categories = [
-    "Web design & development",
-    "Creative web design",
-    "Web development",
+    "Diseño y desarrollo web",
+    "Diseño web creativo",
+    "Desarrollo web",
     "E-Commerce",
     "WordPress",
     "Copywriting"
@@ -20,7 +20,7 @@ export default function WebDesignDiscover() {
         {/* Lado izquierdo: Título y Tags */}
         <div className="flex-1">
           <h2 className="text-5xl md:text-7xl font-medium tracking-tight text-white leading-none mb-8">
-            Discover more
+            Descubrir más
           </h2>
           
           <div className="flex flex-wrap gap-3">
@@ -38,7 +38,7 @@ export default function WebDesignDiscover() {
         {/* Lado derecho: Botón Hire us */}
         <div className="flex-shrink-0">
           <Link href="/contact" className="flex items-center gap-3 bg-white text-black rounded-full px-6 py-3 text-sm font-bold tracking-wide hover:bg-neutral-200 transition-colors">
-            Hire us <ArrowRight size={16} />
+            Comenzar proyecto <ArrowRight size={16} />
           </Link>
         </div>
 
