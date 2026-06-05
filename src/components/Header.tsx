@@ -11,6 +11,12 @@ const MENU_SERVICES = [
   { label: "Digital Marketing", href: "/services/digital-marketing" },
 ];
 
+const MENU_PLANS = [
+  { label: "Planes de Inicio", href: "/planes/inicio" },
+  { label: "Planes de Crecimiento", href: "/planes/crecimiento" },
+  { label: "Planes de Liderazgo", href: "/planes/liderazgo" },
+];
+
 // TODO: Cambia los links del menú desplegable aquí
 const MENU_LINKS = [
   { label: "Work", href: "/work" },
@@ -19,15 +25,18 @@ const MENU_LINKS = [
   { label: "Blog", href: "/blog" },
   { label: "Culture", href: "/culture" },
   { label: "Contact", href: "/contact" },
+  { label: "Plans", href: "/planes" },
 ];
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [plansOpen, setPlansOpen] = useState(false);
 
   // Reset services submenu when menu closes
   useEffect(() => {
     if (!menuOpen) setServicesOpen(false);
+    setPlansOpen(false);
   }, [menuOpen]);
 
   return (
@@ -53,8 +62,18 @@ export default function Header() {
                 className="hidden sm:inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-black text-white text-sm font-medium hover:bg-neutral-800 transition-colors"
               >
                 Hire us
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
                 </svg>
               </Link>
 
@@ -64,12 +83,32 @@ export default function Header() {
                 className="w-11 h-11 rounded-full border border-neutral-900/20 bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-black hover:text-white hover:border-black group transition-colors duration-300"
               >
                 {menuOpen ? (
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   </svg>
                 ) : (
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8h16M4 16h16" />
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 8h16M4 16h16"
+                    />
                   </svg>
                 )}
               </button>
@@ -90,8 +129,18 @@ export default function Header() {
                         onClick={() => setMenuOpen(false)}
                         className="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center hover:bg-neutral-100 transition-colors"
                       >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        <svg
+                          className="w-5 h-5"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M6 18L18 6M6 6l12 12"
+                          />
                         </svg>
                       </button>
                     </div>
@@ -141,6 +190,55 @@ export default function Header() {
                           );
                         }
 
+                        // Plans gets expandable treatment
+                        if (link.label === "Plans") {
+                          return (
+                            <div key={link.label}>
+                              <div className="flex items-center justify-between">
+                                <Link
+                                  href="/planes"
+                                  onClick={() => setMenuOpen(false)}
+                                  className="hover:text-blue-600 transition-colors"
+                                >
+                                  Plans
+                                </Link>
+                                <button
+                                  onClick={() => setPlansOpen((prev) => !prev)}
+                                  className="hover:text-blue-600 transition-colors"
+                                >
+                                  <motion.span
+                                    animate={{ rotate: plansOpen ? 45 : 0 }}
+                                    className="text-2xl leading-none block"
+                                  >
+                                    +
+                                  </motion.span>
+                                </button>
+                              </div>
+
+                              <AnimatePresence>
+                                {plansOpen && (
+                                  <motion.div
+                                    initial={{ height: 0, opacity: 0 }}
+                                    animate={{ height: "auto", opacity: 1 }}
+                                    exit={{ height: 0, opacity: 0 }}
+                                    className="pl-4 mt-2 text-base font-medium text-neutral-600 space-y-2 overflow-hidden"
+                                  >
+                                    {MENU_PLANS.map((plan) => (
+                                      <Link
+                                        key={plan.label}
+                                        href={plan.href}
+                                        onClick={() => setMenuOpen(false)}
+                                        className="block hover:text-blue-600 transition-colors"
+                                      >
+                                        {plan.label}
+                                      </Link>
+                                    ))}
+                                  </motion.div>
+                                )}
+                              </AnimatePresence>
+                            </div>
+                          );
+                        }
                         return (
                           <Link
                             key={link.label}
@@ -162,8 +260,18 @@ export default function Header() {
                     >
                       {/* TODO: Cambia "Start your project" por tu CTA */}
                       Start your project
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M14 5l7 7m0 0l-7 7m7-7H3"
+                        />
                       </svg>
                     </Link>
                   </motion.aside>
