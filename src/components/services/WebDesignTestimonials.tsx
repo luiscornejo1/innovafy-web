@@ -6,15 +6,15 @@ import { ArrowRight, ChevronRight } from "lucide-react";
 const TESTIMONIALS = [
   {
     id: 1,
-    quote: "Beyond the aesthetics, the site is incredibly functional. The CMS gives us the flexibility and control we need to keep our content fresh and relevant, and they have significantly improved the website's UX. We couldn't be happier!",
+    quote: "Más allá de la estética, el sitio es increíblemente funcional. El CMS nos brinda la flexibilidad y el control que necesitamos para mantener nuestro contenido fresco y relevante, y han mejorado significativamente la experiencia de usuario del sitio web. ¡No podríamos estar más felices!",
     author: "Jenny Frame",
-    role: "Marketing Manager",
+    role: "Gerente de Marketing",
     company: "INCENTIVE GAMES",
     bgColor: "bg-[#f4add7]", // Pink
   },
   {
     id: 2,
-    quote: "It was our brand positioning work that really made everything click. KOTA were empathetic, patient, flexible, quick, and, most importantly, incredibly talented with brand positioning, visual identity, and digital experiences. I've already recommended them twice!",
+    quote: "Fue nuestro trabajo de posicionamiento de marca lo que realmente hizo que todo encajara. Innovafy fue empático, paciente, flexible, rápido y, lo que es más importante, increíblemente talentoso con el posicionamiento de la marca, la identidad visual y las experiencias digitales. ¡Ya los he recomendado dos veces!",
     author: "Shanice Daeche",
     role: "CMO",
     company: "Florence",
@@ -22,7 +22,7 @@ const TESTIMONIALS = [
   },
   {
     id: 3,
-    quote: "The team delivered an outstanding platform that has elevated our digital presence significantly. Their attention to detail and creative approach made the entire process seamless from start to finish.",
+    quote: "El equipo entregó una plataforma excepcional que ha elevado significativamente nuestra presencia digital. Su atención al detalle y su enfoque creativo hicieron que todo el proceso fuera fluido de principio a fin.",
     author: "David Smith",
     role: "Director",
     company: "TechCorp",
@@ -56,7 +56,7 @@ export default function WebDesignTestimonials() {
         {/* Izquierda: Título gigante */}
         <div className="lg:w-5/12 flex-shrink-0 w-full">
           <h2 className="text-6xl md:text-7xl lg:text-[110px] font-medium text-white leading-[1] tracking-tight">
-            What our<br />clients say
+            Lo que dicen<br />nuestros clientes
           </h2>
         </div>
 
@@ -125,7 +125,7 @@ export default function WebDesignTestimonials() {
                     <button 
                       className={`flex items-center gap-2 border border-black rounded-full px-5 py-2 text-sm font-medium transition-colors ${isFront ? 'hover:bg-black hover:text-white pointer-events-auto' : 'pointer-events-none'}`}
                     >
-                      View project <ArrowRight size={16} />
+                      Ver proyecto <ArrowRight size={16} />
                     </button>
                     <button 
                       onClick={isFront ? nextCard : undefined} 

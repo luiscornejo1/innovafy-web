@@ -1,4 +1,5 @@
 import LenisProvider from "../../../components/LenisProvider";
+import FluidBackground from "../../../components/three/FluidBackground";
 import WebDesignHero from "../../../components/services/WebDesignHero";
 import WebDesignPortfolio from "../../../components/services/WebDesignPortfolio";
 import WebDesignFeatures from "../../../components/services/WebDesignFeatures";
@@ -19,20 +20,33 @@ export const metadata = {
 
 export default function WebDesignPage() {
   return (
-    <main className="min-h-screen bg-transparent">
+    <main className="min-h-screen relative">
       <LenisProvider />
-      <WebDesignHero />
-      <WebDesignPortfolio />
-      <WebDesignFeatures />
-      <WebDesignResults />
-      <WebDesignWorkflow />
-      <WebDesignTestimonials />
-      <WebDesignArticles />
-      <WebDesignRelatedProjects />
-      <WebDesignFAQs />
-      <WebDesignDiscover />
-      <InterestedCTA />
-      <Footer />
+      
+      {/* 
+        Primera sección hasta la línea de tiempo (Workflow) 
+        Fondo blanco/off-white según las indicaciones
+      */}
+      <div className="bg-[#f4f4f4] text-black transition-colors duration-700">
+        <WebDesignHero />
+        <WebDesignPortfolio />
+        <WebDesignFeatures />
+        <WebDesignResults />
+        <WebDesignWorkflow />
+      </div>
+
+      {/* 
+        Después de la línea de tiempo el fondo es negro 
+      */}
+      <div className="bg-[#050508] text-white transition-colors duration-700">
+        <WebDesignTestimonials />
+        <WebDesignArticles />
+        <WebDesignRelatedProjects />
+        <WebDesignFAQs />
+        <WebDesignDiscover />
+        <InterestedCTA />
+        <Footer />
+      </div>
     </main>
   );
 }

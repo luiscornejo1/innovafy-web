@@ -14,23 +14,23 @@ const ARTICLES = [
   {
     id: 1,
     // Usando una imagen colorida abstracta de Unsplash similar a la referencia (rosado/relojes)
-    image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=800&auto=format&fit=crop", 
-    title: "How long does it take to design and build a website?",
-    category: "Expertise"
+    image: "/assets/16.jpg", 
+    title: "¿Cuánto tiempo se tarda en diseñar y construir un sitio web?",
+    category: "Experiencia"
   },
   {
     id: 2,
     // Pantallas y diseño web
-    image: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=800&auto=format&fit=crop", 
-    title: "10 signs you probably need a new website",
-    category: "Expertise"
+    image: "/assets/17.jpg", 
+    title: "10 señales de que probablemente necesitas un sitio web nuevo",
+    category: "Experiencia"
   },
   {
     id: 3,
     // Personas trabajando (detrás de escena)
-    image: "https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=800&auto=format&fit=crop", 
-    title: "Behind the scenes at KOTA: Web Design process",
-    category: "Expertise"
+    image: "/assets/18.jpg", 
+    title: "Detrás de escena en Innovafy: Proceso de Diseño Web",
+    category: "Experiencia"
   }
 ];
 
@@ -85,11 +85,11 @@ export default function WebDesignArticles() {
         {/* Cabecera: Título y Botón */}
         <div className="articles-header flex flex-col md:flex-row justify-between items-start md:items-end mb-12 lg:mb-16 gap-6">
           <h2 className="text-5xl md:text-6xl font-medium tracking-tight text-white">
-            Related Articles
+            Artículos Relacionados
           </h2>
           
           <Link href="#" className="flex items-center gap-3 border border-white rounded-full px-5 py-2.5 text-sm font-medium text-white hover:bg-white hover:text-black transition-colors">
-            View all articles <ArrowRight size={16} />
+            Ver todos los artículos <ArrowRight size={16} />
           </Link>
         </div>
 

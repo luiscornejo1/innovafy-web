@@ -8,11 +8,13 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+import { ArrowDownLeft } from "lucide-react";
+
 // TODO: Modifica los nombres de tus filtros aquí
 const FILTERS = [
-  "Web design & development",
-  "Creative web design",
-  "Web development",
+  "Diseño y desarrollo web",
+  "Diseño web creativo",
+  "Desarrollo web",
   "E-Commerce",
   "WordPress",
   "Copywriting",
@@ -23,33 +25,33 @@ const FILTERS = [
 const PORTFOLIO_ITEMS = [
   {
     id: 1,
-    title: "Forty West",
-    category: "Web design & development",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop",
+    title: "Innovafy",
+    category: "Diseño y desarrollo web",
+    image: "/assets/Frame.jpg",
     // Esta será la imagen grande de la izquierda
     gridClass: "lg:col-start-1 lg:col-span-2 lg:row-start-1 lg:row-span-2",
   },
   {
     id: 2,
-    title: "Create. Capture. Curate.",
-    category: "Creative web design",
-    image: "https://images.unsplash.com/photo-1618761714954-0b8cd0026356?q=80&w=2070&auto=format&fit=crop",
+    title: "Identidad",
+    category: "Diseño web creativo",
+    image: "/assets/logos_inovafy (1).jpg",
     // Esta será la imagen cuadrada superior del medio
     gridClass: "lg:col-start-3 lg:col-span-1 lg:row-start-1 lg:row-span-1",
   },
   {
     id: 3,
-    title: "Brand Identity",
-    category: "Branding",
-    image: "https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=2029&auto=format&fit=crop",
+    title: "Marca",
+    category: "Identidad de Marca",
+    image: "/assets/logos_inovafy (1)_4.png",
     // Esta será la imagen cuadrada inferior del medio
     gridClass: "lg:col-start-3 lg:col-span-1 lg:row-start-2 lg:row-span-1",
   },
   {
     id: 4,
-    title: "Amelia Dimoldenberg",
-    category: "Web development",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop",
+    title: "Desarrollo",
+    category: "Desarrollo web",
+    image: "/assets/15.jpg",
     // Esta será la imagen vertical alargada de la derecha
     gridClass: "lg:col-start-4 lg:col-span-1 lg:row-start-1 lg:row-span-2",
   },
@@ -89,25 +91,32 @@ export default function WebDesignPortfolio() {
       <div className="max-w-[1400px] mx-auto">
         
         {/* Header & Filters */}
-        <div className="flex flex-col mb-12">
-          <span className="text-sm font-medium tracking-widest text-neutral-500 mb-6 uppercase">
-            Discover more
-          </span>
+        <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-16 mt-8">
+          <div className="flex flex-col">
+            <span className="text-sm font-medium text-neutral-500 mb-6">
+              Descubrir más
+            </span>
+            
+            <div className="flex flex-wrap gap-2">
+              {FILTERS.map((filter) => (
+                <button
+                  key={filter}
+                  onClick={() => setActiveFilter(filter)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 border ${
+                    activeFilter === filter
+                      ? "bg-black text-white border-black"
+                      : "bg-transparent text-black border-black hover:bg-neutral-100"
+                  }`}
+                >
+                  {filter}
+                </button>
+              ))}
+            </div>
+          </div>
           
-          <div className="flex flex-wrap gap-3">
-            {FILTERS.map((filter) => (
-              <button
-                key={filter}
-                onClick={() => setActiveFilter(filter)}
-                className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 border ${
-                  activeFilter === filter
-                    ? "bg-black text-white border-black"
-                    : "bg-transparent text-neutral-800 border-neutral-300 hover:border-black"
-                }`}
-              >
-                {filter}
-              </button>
-            ))}
+          {/* Huge Arrow */}
+          <div className="hidden md:block pb-1">
+            <ArrowDownLeft size={64} className="text-black" strokeWidth={1} />
           </div>
         </div>
 
