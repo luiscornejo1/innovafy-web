@@ -1,30 +1,34 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
 import gsap from "gsap";
 
-export default function KotaHero() {
+export default function CultureHero() {
   const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        ".hero-line",
-        { y: 200, opacity: 0 },
+        ".culture-hero-line",
+        { y: 120, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 1.2,
-          stagger: 0.08,
+          duration: 1.1,
+          stagger: 0.1,
           ease: "power4.out",
-          delay: 0.2,
+          delay: 0.15,
         }
       );
       gsap.fromTo(
-        ".hero-bottom",
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.8, delay: 1 }
+        ".culture-hero-culture",
+        { y: 80, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, delay: 0.5, ease: "power3.out" }
+      );
+      gsap.fromTo(
+        ".culture-hero-meta",
+        { opacity: 0, y: 24 },
+        { opacity: 1, y: 0, duration: 0.8, delay: 0.85 }
       );
     }, heroRef);
 
@@ -32,75 +36,45 @@ export default function KotaHero() {
   }, []);
 
   return (
-    <section ref={heroRef} className="relative h-screen w-full overflow-hidden">
-      {/* Video Background */}
-      <div className="absolute inset-0">
+    <section
+      ref={heroRef}
+      className="relative min-h-[100svh] w-full overflow-hidden bg-black text-white"
+    >
+      <figure className="absolute inset-0">
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="w-full h-full object-cover scale-105"
-          poster="https://images.unsplash.com/photo-1536697248787-b4e521cd1b15?q=80&w=1974&auto=format"
+          className="h-full w-full object-cover"
+          poster="https://kota-content.b-cdn.net/app/uploads/2023/11/culture-row-2.jpg"
         >
           <source
-            src="https://cdn.pixabay.com/video/2025/04/23/273922_large.mp4"
+            src="https://kota-content.b-cdn.net/app/uploads/2024/02/culture-header.mp4"
+            type="video/mp4"
+            media="(min-width: 768px)"
+          />
+          <source
+            src="https://kota-content.b-cdn.net/app/uploads/2024/08/culture-mobile-header-1.mp4"
             type="video/mp4"
           />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/80" />
-      </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/15 to-black/75" />
+      </figure>
 
-      {/* Floating blur effect */}
-      <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-[#4200FF] blur-[120px] opacity-20" />
-
-      {/* Main Content */}
-      <div className="relative z-10 h-full flex flex-col justify-between pb-4 md:pb-9">
-        {/* Título principal - Mismo espaciado que abajo */}
-        <div className="pt-24 md:pt-32 px-[7vw]">
-          <h1 className="text-5xl md:text-6xl lg:text-8xl font-semibold leading-[1.1]">
-            <span className="hero-line inline-block overflow-visible font-normal">
-              Be part of a great
+      <div className="relative z-10 flex min-h-[100svh] flex-col justify-between px-[7vw] pb-8 pt-28 md:pb-12 md:pt-32">
+        <div className="max-w-[1400px]">
+          <h2 className="text-[clamp(2.25rem,6.5vw,5.5rem)] font-normal leading-[1.05] tracking-[-0.02em]">
+            <span className="culture-hero-line block overflow-hidden">
+              Be part of a <em className="not-italic">great</em>
             </span>
-            <br />
-            <span className="hero-line inline-block overflow-visible font-normal">
-              team, but work
+            <span className="culture-hero-line block overflow-hidden">
+              <em className="not-italic">team,</em> but work
             </span>
-            <br />
-            <span className="hero-line inline-block overflow-visible font-normal text-[#4200FF]">
+            <span className="culture-hero-line block overflow-hidden">
               from anywhere.
             </span>
-          </h1>
-        </div>
-
-        {/* Bottom Section - Studio/Based/Founded - Mismo px-[5vw] */}
-        <div className="hero-bottom px-[7.5vw]">
-          <div className="flex gap-12 md:gap-20">
-            <div>
-              <p className="text-[10px] md:text-xs text-[#888] uppercase tracking-wider mb-1">
-                Studio
-              </p>
-              <p className="text-sm md:text-base font-medium text-white/90">
-                Innovafy
-              </p>
-            </div>
-            <div>
-              <p className="text-[10px] md:text-xs text-[#888] uppercase tracking-wider mb-1">
-                Based
-              </p>
-              <p className="text-sm md:text-base font-medium text-white/90">
-                Global / Remote
-              </p>
-            </div>
-            <div>
-              <p className="text-[10px] md:text-xs text-[#888] uppercase tracking-wider mb-1">
-                Founded
-              </p>
-              <p className="text-sm md:text-base font-medium text-white/90">
-                2013
-              </p>
-            </div>
-          </div>
+          </h2>
         </div>
       </div>
     </section>

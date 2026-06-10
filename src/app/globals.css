@@ -5,12 +5,60 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* ── COLORES PRIMARIOS ── */ 
+  --blue: #4200FF; 
+  --blue-d: #3100CC; 
+  --blue-l: #6242FF; 
+  --blue-xl:#EEE9FF; 
+  --ink: #0E0C14; 
+  --ink2: #1C1828; 
+  --ink3: #2E2A3D; 
+  --cream: #F2EFE8; 
+  --mist: #F8F6F2; 
+  --white: #FFFFFF; 
+  --stone: #9490A8; 
+  --line: rgba(148,144,168,.13); 
+  
+  /* ── ESPACIADO ── */ 
+  --sp-xs: 4px; 
+  --sp-sm: 8px; 
+  --sp-md: 16px; 
+  --sp-lg:24px; 
+  --sp-xl:32px; 
+  --sp-2xl:48px; 
+  --sp-3xl:64px; 
+  --sp-4xl:80px; 
+  --sp-5xl:96px; 
+  
+  /* ── LAYOUT ── */ 
+  --margin: 52px; 
+  --max-width: 1380px; 
+  --gutter: 24px; 
+  --radius: 6px; 
+
+  /* ── MOTION ── */
+  --dur-fast: 120ms; 
+  --dur-base: 200ms; 
+  --dur-enter: 320ms; 
+  --dur-page: 600ms; 
+  --ease-out: cubic-bezier(.2, 0, 0, 1); 
+  --ease-spring:cubic-bezier(.16, 1, .3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  @apply antialiased;
+  @apply antialiased bg-inovafy-cream text-inovafy-ink;
 }
 
 .swiper-pagination-bullet {

@@ -6,75 +6,130 @@ import { AnimatePresence, motion } from "motion/react";
 
 // TODO: Cambia los nombres de los servicios del menú desplegable aquí
 const MENU_SERVICES = [
-  { label: "Web Design", href: "/services/web-design" },
-  { label: "Branding", href: "/services/branding" },
-  { label: "Digital Marketing", href: "/services/digital-marketing" },
+  { label: "Desarrollo Web", href: "/services/web-design" },
+  {
+    label: "Experiencia de Marca y Diseño Digital",
+    href: "/services/branding",
+  },
+  { label: "Automatización con IA", href: "/services/digital-marketing" },
+];
+
+const MENU_PLANS = [
+  { label: "Planes de Inicio", href: "/planes/inicio" },
+  { label: "Planes de Crecimiento", href: "/planes/crecimiento" },
+  { label: "Planes de Liderazgo", href: "/planes/liderazgo" },
 ];
 
 // TODO: Cambia los links del menú desplegable aquí
 const MENU_LINKS = [
-  { label: "Work", href: "/work" },
-  { label: "Agency", href: "/agency" },
-  { label: "Services", href: "/services/web-design" },
+  { label: "Trabajo", href: "/work" },
+  { label: "Agencia", href: "/agency" },
+  { label: "Servicios", href: "/services/web-design" },
   { label: "Blog", href: "/blog" },
   { label: "Culture", href: "/culture" },
   { label: "Contact", href: "/contact" },
+  { label: "Plans", href: "/planes" },
 ];
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [plansOpen, setPlansOpen] = useState(false);
 
   // Reset services submenu when menu closes
   useEffect(() => {
     if (!menuOpen) setServicesOpen(false);
+    setPlansOpen(false);
   }, [menuOpen]);
 
   return (
     <>
-      {/* ── FIXED TOP BAR ── */}
-      <header className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+      {/* ── MIX BLEND LAYER (Logo & Hamburger) ── */}
+      <header className="fixed top-0 left-0 right-0 z-40 pointer-events-none mix-blend-difference text-white">
+        <div className="w-full max-w-[1800px] mx-auto px-6 md:px-10 lg:px-16 pt-4">
           <div className="flex justify-between items-center h-20">
             {/* LEFT: Logo */}
             <Link
               href="/"
               className="text-2xl font-bold tracking-tight pointer-events-auto hover:opacity-70 transition-opacity"
             >
-              {/* TODO: Cambia "INNOVAFY" por el nombre/logo de tu empresa */}
               INNOVAFY
             </Link>
 
-            {/* RIGHT: Hire Us + Hamburger — wrapper is relative so menu anchors here */}
+            {/* RIGHT: Empty div to maintain flex layout */}
+            <div />
+          </div>
+        </div>
+      </header>
+
+      {/* ── NORMAL LAYER (Contactar Button, Hamburger & Dropdown) ── */}
+      <header className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
+        <div className="w-full max-w-[1800px] mx-auto px-6 md:px-10 lg:px-16 pt-4">
+          <div className="flex justify-between items-center h-20">
+            {/* LEFT: Invisible Logo Placeholder */}
+            <div className="text-2xl font-bold tracking-tight opacity-0 pointer-events-none select-none">
+              INNOVAFY
+            </div>
+
+            {/* RIGHT: Contactar + Hamburger */}
             <div className="relative flex items-center gap-3 pointer-events-auto">
-              {/* TODO: Puedes cambiar el nombre de este botón donde dice "Hire us" */}
               <Link
                 href="/contact"
                 className="hidden sm:inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-black text-white text-sm font-medium hover:bg-neutral-800 transition-colors"
               >
                 Hire us
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
                 </svg>
               </Link>
 
               {/* Hamburger / Close toggle */}
               <button
                 onClick={() => setMenuOpen((prev) => !prev)}
-                className="w-11 h-11 rounded-full border border-neutral-900/20 bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-black hover:text-white hover:border-black group transition-colors duration-300"
+                className="w-11 h-11 rounded-full border border-neutral-900/20 bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-black hover:text-white hover:border-black group transition-colors duration-300 text-black"
               >
                 {menuOpen ? (
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   </svg>
                 ) : (
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8h16M4 16h16" />
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 8h16M4 16h16"
+                    />
                   </svg>
                 )}
               </button>
 
-              {/* ── DROPDOWN MENU — positioned relative to this wrapper ── */}
+              {/* ── DROPDOWN MENU ── */}
               <AnimatePresence>
                 {menuOpen && (
                   <motion.aside
@@ -90,8 +145,18 @@ export default function Header() {
                         onClick={() => setMenuOpen(false)}
                         className="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center hover:bg-neutral-100 transition-colors"
                       >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        <svg
+                          className="w-5 h-5"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M6 18L18 6M6 6l12 12"
+                          />
                         </svg>
                       </button>
                     </div>
@@ -100,14 +165,14 @@ export default function Header() {
                     <nav className="mt-4 space-y-4 text-lg font-semibold">
                       {MENU_LINKS.map((link) => {
                         // Services gets expandable treatment
-                        if (link.label === "Services") {
+                        if (link.label === "Servicios") {
                           return (
                             <div key={link.label}>
                               <button
                                 onClick={() => setServicesOpen((prev) => !prev)}
                                 className="w-full flex items-center justify-between hover:text-blue-600 transition-colors"
                               >
-                                Services
+                                Servicios
                                 <motion.span
                                   animate={{ rotate: servicesOpen ? 45 : 0 }}
                                   className="text-2xl leading-none"
@@ -141,6 +206,55 @@ export default function Header() {
                           );
                         }
 
+                        // Plans gets expandable treatment
+                        if (link.label === "Plans") {
+                          return (
+                            <div key={link.label}>
+                              <div className="flex items-center justify-between">
+                                <Link
+                                  href="/planes"
+                                  onClick={() => setMenuOpen(false)}
+                                  className="hover:text-blue-600 transition-colors"
+                                >
+                                  Plans
+                                </Link>
+                                <button
+                                  onClick={() => setPlansOpen((prev) => !prev)}
+                                  className="hover:text-blue-600 transition-colors"
+                                >
+                                  <motion.span
+                                    animate={{ rotate: plansOpen ? 45 : 0 }}
+                                    className="text-2xl leading-none block"
+                                  >
+                                    +
+                                  </motion.span>
+                                </button>
+                              </div>
+
+                              <AnimatePresence>
+                                {plansOpen && (
+                                  <motion.div
+                                    initial={{ height: 0, opacity: 0 }}
+                                    animate={{ height: "auto", opacity: 1 }}
+                                    exit={{ height: 0, opacity: 0 }}
+                                    className="pl-4 mt-2 text-base font-medium text-neutral-600 space-y-2 overflow-hidden"
+                                  >
+                                    {MENU_PLANS.map((plan) => (
+                                      <Link
+                                        key={plan.label}
+                                        href={plan.href}
+                                        onClick={() => setMenuOpen(false)}
+                                        className="block hover:text-blue-600 transition-colors"
+                                      >
+                                        {plan.label}
+                                      </Link>
+                                    ))}
+                                  </motion.div>
+                                )}
+                              </AnimatePresence>
+                            </div>
+                          );
+                        }
                         return (
                           <Link
                             key={link.label}
@@ -162,8 +276,18 @@ export default function Header() {
                     >
                       {/* TODO: Cambia "Start your project" por tu CTA */}
                       Start your project
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M14 5l7 7m0 0l-7 7m7-7H3"
+                        />
                       </svg>
                     </Link>
                   </motion.aside>
