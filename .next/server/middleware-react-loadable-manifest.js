@@ -1,0 +1,1 @@
+self.__REACT_LOADABLE_MANIFEST="{\"components/GlobalBackground.tsx -> three\":{\"id\":\"components/GlobalBackground.tsx -> three\",\"files\":[\"static/chunks/_app-pages-browser_node_modules_three_build_three_module_js.js\"]}}"
