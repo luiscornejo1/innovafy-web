@@ -1,245 +1,125 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+
+import { culturePerks, cultureSkills } from "../../data/cultureContent";
+import SectionBackground from "./SectionBackground";
 
 export default function CultureCollaborate() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  // ✅ contenido dinámico
-  const items = [
-    {
-      title: "4.5 day week.",
-      desc: "Finish at 1pm on a Friday!",
-    },
-    {
-      title: "Remote and flexible working.",
-      desc: "Choose where you work from. Change location but just make sure you have a good internet connection. We operate core hours but make your day work for you.",
-    },
-    {
-      title: "Zero ego hiring policy.",
-      desc: "We only hire open minded people that will be easy going and of course, talented.",
-    },
-    {
-      title: "Open communication.",
-      desc: "Every team member has a mentor to sound board off and have 1 to 1’s every month. Every six months we get together for performance reviews.",
-    },
-    {
-      title: "Creative freedom.",
-      desc: "We encourage ideas, experimentation and pushing boundaries on every project.",
-    },
-  ];
-
   const [index, setIndex] = useState(0);
+  const perkRef = useRef<HTMLDivElement>(null);
 
   const nextItem = () => {
-    setIndex((prev) => (prev + 1) % items.length);
+    setIndex((prev) => (prev + 1) % culturePerks.length);
   };
 
-  // ✅ SHADER SOLO PARA LA SEGUNDA SECCIÓN
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+    if (!perkRef.current) return;
 
-    let cleanup: (() => void) | null = null;
+    gsap.fromTo(
+      perkRef.current,
+      { opacity: 0, y: 12 },
+      { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }
+    );
+  }, [index]);
 
-    import("three").then((THREE) => {
-      if (!container) return;
-
-      const scene = new THREE.Scene();
-      const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-
-      const renderer = new THREE.WebGLRenderer({
-        alpha: true,
-        powerPreference: "low-power",
-      });
-
-      renderer.setSize(container.offsetWidth, container.offsetHeight);
-      container.appendChild(renderer.domElement);
-
-      Object.assign(renderer.domElement.style, {
-        position: "absolute",
-        inset: "0",
-        pointerEvents: "none",
-      });
-
-      const uniforms = {
-        uTime: { value: 0 },
-        uMouse: { value: new THREE.Vector2(0.5, 0.5) },
-      };
-
-      const material = new THREE.ShaderMaterial({
-        uniforms,
-        vertexShader: `
-          varying vec2 vUv;
-          void main() {
-            vUv = uv;
-            gl_Position = vec4(position, 1.0);
-          }
-        `,
-        fragmentShader: `
-          precision highp float;
-          uniform float uTime;
-          uniform vec2 uMouse;
-          varying vec2 vUv;
-
-          float noise(vec2 p){
-            return sin(p.x)*sin(p.y);
-          }
-
-          float fbm(vec2 p){
-            float v = 0.0;
-            v += noise(p) * .5;
-            v += noise(p*2.0) * .25;
-            v += noise(p*4.0) * .125;
-            return v;
-          }
-
-          void main(){
-            vec2 uv = vUv;
-
-            float t = uTime * 0.25;
-            float n = fbm(uv * 2.0 + t);
-
-            vec3 dark1 = vec3(0.02);
-            vec3 dark2 = vec3(0.15);
-
-            vec3 base = mix(dark1, dark2, n);
-
-            vec3 magenta = vec3(0.85, 0.1, 0.5);
-            vec3 blue = vec3(0.1, 0.5, 0.9);
-
-            float dist = distance(uv, uMouse);
-            float glow = exp(-dist * 6.0);
-
-            vec3 col = mix(magenta, blue, n);
-
-            vec3 finalColor = mix(base, col, glow);
-            finalColor += col * glow * 0.35;
-
-            gl_FragColor = vec4(finalColor, 1.0);
-          }
-        `,
-      });
-
-      const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
-
-      scene.add(mesh);
-
-      const onMouseMove = (e: MouseEvent) => {
-        const rect = container.getBoundingClientRect();
-        uniforms.uMouse.value.set(
-          (e.clientX - rect.left) / rect.width,
-          1 - (e.clientY - rect.top) / rect.height
-        );
-      };
-
-      container.addEventListener("mousemove", onMouseMove);
-
-      let raf = 0;
-
-      const animate = () => {
-        raf = requestAnimationFrame(animate);
-        uniforms.uTime.value += 0.016;
-        renderer.render(scene, camera);
-      };
-
-      animate();
-
-      cleanup = () => {
-        cancelAnimationFrame(raf);
-        container.removeEventListener("mousemove", onMouseMove);
-        renderer.dispose();
-      };
-    });
-
-    return () => cleanup?.();
-  }, []);
+  const perk = culturePerks[index];
 
   return (
     <>
-      {/* ✅ SECCIÓN 1: NEGRA (CORREGIDA EXACTA) */}
-      <section className="bg-[#000000]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-24 pb-32">
-          <div className="grid lg:grid-cols-3 items-start gap-10">
-            {/* LEFT */}
-            <h2 className="text-5xl md:text-5xl text-white font-medium">
+      <section className="relative bg-black text-white">
+        <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-12 md:py-32 lg:px-20">
+          <div className="grid items-start gap-12 lg:grid-cols-[1fr_1.4fr]">
+            <h2 className="text-5xl font-normal leading-tight md:text-5xl lg:text-6xl">
               Sorry, no table football, but...
             </h2>
 
-            {/* RIGHT */}
-            <div className="lg:col-span-2 flex gap-6">
-              {/* ✅ LINEA AJUSTADA */}
-              <div className="ml-4 w-[4px] min-h-[140px] bg-gradient-to-b from-purple-500 via-blue-500 to-transparent rounded-full" />
+            <div className="flex gap-6 pl-6 md:pl-10">
+              {/* Rayita de colores animada - más ancha */}
+              <div className="w-1 min-h-[160px] bg-gradient-to-b from-purple-500 via-blue-500 to-pink-500 rounded-full animate-pulse" />
 
-              {/* CONTENIDO */}
-              <div className="pl-2">
-                <h3 className="text-4xl md:text-5xl text-white font-light mb-3">
-                  {items[index].title}
-                </h3>
-
-                <p className="text-white/60 mb-6 max-w-md leading-relaxed">
-                  {items[index].desc}
+              <div ref={perkRef} className="min-h-[160px]">
+                <p className="mb-3 text-5xl font-light md:text-5xl lg:text-6xl">
+                  {perk.heading}
+                </p>
+                <p className="mb-8 max-w-md text-lg md:text-xl leading-tight text-white/60">
+                  {perk.text}
                 </p>
 
                 <button
+                  type="button"
                   onClick={nextItem}
-                  className="flex items-center gap-3 text-white/80 group"
+                  className="group flex items-center gap-3 text-base md:text-lg uppercase tracking-widest transition-colors duration-300"
                 >
-                  <div className="w-10 h-10 flex items-center justify-center border border-white/40 rounded-full group-hover:rotate-180 transition duration-500">
-                    ↻
-                  </div>
-
-                  <span className="text-sm tracking-wide">SHOW ANOTHER</span>
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full border border-purple-500/50 transition duration-500 group-hover:rotate-180 group-hover:border-pink-500 group-hover:bg-gradient-to-br group-hover:from-purple-500/30 group-hover:via-blue-500/30 group-hover:to-pink-500/30">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 62.52 62.52"
+                      className="h-5 w-5 text-white/80 group-hover:text-white"
+                      fill="none"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M31.14 57.71c-7.01 0-13.61-2.73-18.57-7.69-4.96-4.96-7.69-11.55-7.69-18.57 0-7.01 2.73-13.61 7.69-18.57 4.96-4.96 11.55-7.69 18.57-7.69 7.01 0 13.61 2.73 18.57 7.69 4.96 4.96 7.69 11.55 7.69 18.57h-3c0-6.21-2.42-12.05-6.81-16.45-4.39-4.39-10.23-6.81-16.44-6.81S19.1 10.61 14.7 15c-4.39 4.39-6.81 10.23-6.81 16.44s2.42 12.05 6.81 16.45c4.39 4.39 10.23 6.81 16.44 6.81s12.05-2.42 16.45-6.81l2.12 2.12c-4.96 4.96-11.55 7.69-18.57 7.69z"
+                      />
+                      <path
+                        fill="currentColor"
+                        d="M50.73 26.09h10.34c.56 0 1.02.45 1.02 1.01 0 .19-.05.37-.14.53l-5.17 8.69c-.29.48-.91.64-1.39.36-.15-.09-.27-.21-.36-.36l-5.17-8.69c-.29-.49-.12-1.11.36-1.4.16-.09.33-.14.51-.14z"
+                      />
+                    </svg>
+                  </span>
+                  <span className="bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500 bg-clip-text text-transparent group-hover:from-purple-400 group-hover:via-blue-400 group-hover:to-pink-400">
+                    Show another
+                  </span>
                 </button>
               </div>
             </div>
           </div>
         </div>
+
+        {/* Gradiente de transición - solo negro sutil */}
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none" />
       </section>
 
-      {/* ✅ SECCIÓN 2: SHADER */}
-      <section
-        ref={containerRef}
-        className="relative bg-[#050508] overflow-hidden"
-      >
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-20 md:py-24">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <section className="relative isolate overflow-hidden bg-black py-16 md:py-20">
+        <SectionBackground />
+        <div className="relative z-10 mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20">
+          <div className="grid items-center gap-16 lg:grid-cols-2">
             <div className="max-w-xl">
-              <p className="text-3xl md:text-4xl lg:text-5xl leading-[1.1] text-white/85 font-medium mb-10">
-                Got some cool stuff you’d like to share? We’d love to see it,
-                even if there isn’t a fit right right now.
-              </p>
+              <h3 className="mb-10 text-5xl font-semibold leading-[1.1] text-white md:text-5xl g:text-6xl">
+                Got some cool stuff you&apos;d like to share? We&apos;d love to
+                see it, even if there isn&apos;t a fit right now.
+              </h3>
 
-              <button className="group flex items-center gap-3 border border-white/40 rounded-full px-6 py-3 text-white hover:bg-white hover:text-black transition-all duration-300">
-                <span className="text-lg">Get in touch</span>
-                <span className="group-hover:translate-x-1 transition-transform">
-                  →
+              <a
+                href="mailto:hello@innovafy.com"
+                className="group relative inline-flex items-center gap-8 rounded-full border-4 border-white/50 px-8 py-4 text-white transition-all duration-500 hover:border-transparent"
+              >
+                <span className="relative z-10 text-lg font-medium transition-all duration-500 group-hover:-translate-x-2">
+                  Get in touch
                 </span>
-              </button>
+
+                <span className="relative z-10 flex h-6 w-6 items-center justify-center rounded-full border-4 border-transparent transition-all duration-500 group-hover:border-purple-500 group-hover:w-12 group-hover:h-12 group-hover:bg-gradient-to-r group-hover:from-purple-500 group-hover:via-blue-500 group-hover:to-pink-500">
+                  <span className="transition-transform duration-500 group-hover:translate-x-1 group-hover:text-white">
+                    →
+                  </span>
+                </span>
+              </a>
             </div>
 
-            <div className="flex lg:justify-end">
-              <div className="w-full max-w-sm rounded-r-[36px] bg-white/[0.08] backdrop-blur-xl border border-white/10 shadow-[0_20px_120px_rgba(0,0,0,0.6)] p-10">
-                <p className="text-white font-semibold text-lg mb-6">
-                  We’re interested in :
+            <div className="flex justify-start md:justify-end">
+              <div className="w-full md:max-w-md lg:max-w-lg rounded-tr-[2.25rem] bg-white/[0.12] p-5 backdrop-blur-xl border border-white/15 md:p-6 lg:p-8">
+                <p className="mb-3 text-lg font-medium text-white">
+                  We&apos;re interested in :
                 </p>
-
-                <div className="flex flex-col gap-3 text-white/80 text-sm">
-                  {[
-                    "Webflow",
-                    "WebGL",
-                    "Web Animation",
-                    "Motion Graphics",
-                    "Photography",
-                    "Illustration",
-                    "Creative Strategy",
-                    "Copywriting",
-                  ].map((item) => (
+                <div className="flex flex-col gap-1 text-base md:text-lg text-white/85">
+                  {cultureSkills.map((skill) => (
                     <span
-                      key={item}
-                      className="hover:text-purple-300 cursor-pointer"
+                      key={skill}
+                      className="cursor-default transition-colors hover:text-purple-400"
                     >
-                      {item}
+                      {skill}
                     </span>
                   ))}
                 </div>
