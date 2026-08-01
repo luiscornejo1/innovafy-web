@@ -28,7 +28,7 @@ const MENU_LINKS = [
   { label: "Blog", href: "/blog" },
   { label: "Culture", href: "/culture" },
   { label: "Contact", href: "/contact" },
-  { label: "Plans", href: "/planes" },
+  { label: "Planes", href: "/planes" },
 ];
 
 export default function Header() {
@@ -206,8 +206,8 @@ export default function Header() {
                           );
                         }
 
-                        // Plans gets expandable treatment
-                        if (link.label === "Plans") {
+                        // Planes gets expandable treatment
+                        if (link.label === "Planes") {
                           return (
                             <div key={link.label}>
                               <div className="flex items-center justify-between">
@@ -216,7 +216,7 @@ export default function Header() {
                                   onClick={() => setMenuOpen(false)}
                                   className="hover:text-blue-600 transition-colors"
                                 >
-                                  Plans
+                                  Planes
                                 </Link>
                                 <button
                                   onClick={() => setPlansOpen((prev) => !prev)}

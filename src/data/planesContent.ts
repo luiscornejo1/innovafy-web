@@ -3,6 +3,8 @@
 export interface Plan {
   id: string;
   name: string;
+  //videoSrc: "https://kota-content.b-cdn.net/app/uploads/2024/02/homepage.mp4",
+  videoSrc: string;
   tag: string; // "Esencial", "Avanzado", etc.
   segment: "inicio" | "crecimiento" | "liderazgo";
   popular?: boolean;
@@ -27,7 +29,8 @@ export const planes: Plan[] = [
   {
     id: "esencial",
     name: "Esencial",
-    tag: "✦ Plan Esencial",
+    tag: "Plan Esencial",
+    videoSrc: "https://kota-content.b-cdn.net/app/uploads/2024/02/homepage.mp4",
     segment: "inicio",
     price: 949.9,
     description:
@@ -77,13 +80,14 @@ export const planes: Plan[] = [
     idealFor:
       "Emprendedores y negocios locales que validan su presencia digital con imagen profesional desde el primer mes.",
     ctaText: "Empezar ahora →",
-    focusPill: "🎯 Presencia + Contenido + Branding base",
+    focusPill: "Presencia + Contenido + Branding base",
     color: "cream",
   },
   {
     id: "avanzado",
     name: "Avanzado",
-    tag: "✦ Plan Avanzado",
+    tag: "Plan Avanzado",
+    videoSrc: "https://kota-content.b-cdn.net/app/uploads/2024/02/homepage.mp4",
     segment: "inicio",
     popular: true,
     price: 1559.9,
@@ -144,6 +148,7 @@ export const planes: Plan[] = [
     id: "premium",
     name: "Premium",
     tag: "✦ Plan Premium",
+    videoSrc: "https://kota-content.b-cdn.net/app/uploads/2024/02/homepage.mp4",
     segment: "inicio",
     price: 1999.9,
     description:
@@ -200,7 +205,8 @@ export const planes: Plan[] = [
   {
     id: "optimize",
     name: "Optimize",
-    tag: "⚡ Growth Starter",
+    tag: "Growth Starter",
+    videoSrc: "https://kota-content.b-cdn.net/app/uploads/2024/02/homepage.mp4",
     segment: "crecimiento",
     price: 999,
     description:
@@ -255,14 +261,15 @@ export const planes: Plan[] = [
     idealFor:
       "Empresas que necesitan optimizar su presencia digital actual para convertir mejor.",
     ctaText: "Optimizar mi negocio →",
-    focusPill: "🎯 Convertir más con lo que ya tienes",
+    focusPill: "Convertir más con lo que ya tienes",
     color: "cream",
   },
   {
     id: "scale",
     name: "Scale",
-    tag: "🚀 Growth Pro",
+    tag: "Growth Pro",
     segment: "crecimiento",
+    videoSrc: "https://kota-content.b-cdn.net/app/uploads/2024/02/homepage.mp4",
     popular: true,
     price: 1799,
     description:
@@ -317,13 +324,14 @@ export const planes: Plan[] = [
     idealFor:
       "Negocios listos para escalar ventas con campañas activas y automatización.",
     ctaText: "Quiero este plan →",
-    focusPill: "📈 Pauta + Contenido premium + Automatización",
+    focusPill: "Pauta + Contenido premium + Automatización",
     color: "blue",
   },
   {
     id: "dominate",
     name: "Dominate",
-    tag: "💎 Growth Elite",
+    tag: "Growth Elite",
+    videoSrc: "https://kota-content.b-cdn.net/app/uploads/2024/02/homepage.mp4",
     segment: "crecimiento",
     price: 2799,
     description:
@@ -378,7 +386,7 @@ export const planes: Plan[] = [
     idealFor:
       "Empresas que quieren liderazgo digital real con IA y automatización total.",
     ctaText: "Hablar con un experto →",
-    focusPill: "🤖 IA + Automatización + Ecosistema web",
+    focusPill: "IA + Automatización + Ecosistema web",
     color: "dark",
   },
 
@@ -386,14 +394,15 @@ export const planes: Plan[] = [
   {
     id: "leader",
     name: "Leader",
-    tag: "🔵 Liderazgo Starter",
+    tag: "LIDERAZGO STARTER",
     segment: "liderazgo",
+    videoSrc: "https://kota-content.b-cdn.net/app/uploads/2024/02/homepage.mp4",
     price: 2499,
     description:
       "Para empresas consolidadas que quieren modernizar su identidad digital y posicionarse con autoridad.",
     features: [
       {
-        category: "Diseño Digital y Branding",
+        category: "Diseño digital y branding",
         items: [
           {
             text: "Branding completo y rediseño de identidad visual",
@@ -449,19 +458,21 @@ export const planes: Plan[] = [
     ],
     idealFor:
       "Empresas consolidadas que quieren modernizar su identidad digital y posicionarse con autoridad.",
-    ctaText: "Modernizar mi marca →",
-    focusPill: "🎯 Modernización + Branding + Autoridad digital",
+    ctaText: "Modernización + Branding + Autoridad digital", // Reemplazado el texto del botón manteniendo su función
+    focusPill:
+      "Inversión desde S/2499 / mes · Diagnóstico estratégico gratuito", // Reemplaza la píldora superior por el texto que querías
     color: "cream",
   },
   {
     id: "authority",
     name: "Authority",
-    tag: "🟣 Liderazgo Pro",
+    videoSrc: "https://kota-content.b-cdn.net/app/uploads/2024/02/homepage.mp4",
+    tag: "LIDERAZGO PRO",
     segment: "liderazgo",
-    popular: true,
     price: 3599,
     description:
       "Para empresas que quieren ser la referencia #1 de su categoría con IA, automatización y contenido de alto nivel.",
+
     features: [
       {
         category: "Automatización con IA",
@@ -469,7 +480,7 @@ export const planes: Plan[] = [
           {
             text: "Automatización de procesos de marketing con IA",
             subtext:
-              "Implementación de flujos con n8n + integración de herramientas",
+              "Implementación de flujos con n8n + integración de herramientas de marketing",
           },
           {
             text: "Automatización de CRM avanzado",
@@ -484,7 +495,7 @@ export const planes: Plan[] = [
         ],
       },
       {
-        category: "Marketing + Contenido + Pauta",
+        category: "Marketing, Contenido y Pauta",
         items: [
           {
             text: "TikTok Ads + YouTube Ads + remarketing avanzado",
@@ -497,7 +508,8 @@ export const planes: Plan[] = [
           },
           {
             text: "Estrategia de thought leadership + contenido de autoridad",
-            subtext: "Posicionamiento como referente de la industria",
+            subtext:
+              "Posicionamiento como referente de la industria en medios digitales",
           },
           {
             text: "Dashboard ejecutivo de métricas en tiempo real",
@@ -510,20 +522,24 @@ export const planes: Plan[] = [
         ],
       },
     ],
+
     idealFor:
-      "Empresas que quieren ser la referencia #1 de su categoría con IA y automatización.",
-    ctaText: "Quiero este plan →",
-    focusPill: "👑 IA aplicada + Thought leadership + Dominancia",
-    color: "blue",
+      "Empresas que buscan posicionarse como líderes de su industria con automatización e IA avanzada.",
+
+    ctaText: "Quiero este nivel de autoridad →",
+    focusPill: "Desde S/ 3,599/ mes · Incluye todo Plan Leader",
+    color: "dark",
   },
   {
     id: "legacy",
     name: "Legacy",
-    tag: "⬡ Liderazgo Elite",
+    tag: "LIDERAZGO ELITE",
+    videoSrc: "https://kota-content.b-cdn.net/app/uploads/2024/02/homepage.mp4",
     segment: "liderazgo",
     price: 4999,
     description:
-      "El plan definitivo. Ecosistema digital completo con equipo exclusivo, IA personalizada y expansión regional.",
+      "El plan definitivo. Ecosistema digital completo con equipo exclusivo, IA personalizada y expansión regional",
+
     features: [
       {
         category: "Desarrollo Web, Apps y Plataformas",
@@ -581,16 +597,16 @@ export const planes: Plan[] = [
         ],
       },
     ],
+
     idealFor:
-      "Empresas que buscan el plan definitivo con ecosistema digital completo y expansión regional.",
+      "Empresas que buscan construir un ecosistema digital completo y expandirse a nivel regional.",
+
     ctaText: "Agendar reunión ejecutiva →",
-    focusPill: "🌐 Ecosistema 360° · IA personalizada · Expansión",
+    focusPill: "Desde S/ 4,999/ mes · Solución empresarial total",
     color: "dark",
   },
 ];
 
-// Segmentos para el selector
-// Segmentos para el selector
 export const segments = [
   {
     id: "inicio",
@@ -670,33 +686,6 @@ export const differentials = [
     color: "default",
   },
 ];
-// ========== HERO CONTENT ==========
-export const heroContent = {
-  eyebrow: "⬡ Inovafy Studio · Perú · USA · Spain",
-  title: ["Un plan", "para cada", "etapa de", "tu marca."],
-  description:
-    "Desde el primer post hasta dominar tu mercado. Tenemos el plan exacto para donde está tu negocio hoy — y para donde quiere llegar mañana.",
-  chips: [
-    "✦ Marketing Digital",
-    "✦ Diseño Digital",
-    "✦ Branding",
-    "✦ Diseño UI/UX",
-    "✦ Desarrollo App & Web",
-    "✦ Producción Audiovisual",
-    "✦ Creación de Contenido",
-    "✦ IA & Automatización",
-  ],
-  stats: [
-    {
-      icon: "✦",
-      value: "+2 años",
-      label: "Transformando marcas en el sector gastronómico y B2C de Perú",
-      colSpan: true,
-    },
-    { value: "9", label: "Planes por etapa de negocio" },
-    { value: "6", label: "Servicios en un equipo" },
-  ],
-};
 
 // ========== PLAN PERSONALIZADO CONTENT ==========
 export const personalizadoContent = {
@@ -860,12 +849,3 @@ export const compareTable = {
   ],
 };
 
-// ========== FOOTER CTA ==========
-export const footerCta = {
-  title: "¿No sabes qué plan",
-  titleEmphasis: "es para ti?",
-  description:
-    "Agenda una sesión estratégica gratuita de 30 minutos. Te ayudamos a elegir el plan ideal para tu etapa de negocio.",
-  ctaText: "Agendar sesión gratuita →",
-  ctaSecondary: "Ver todos los planes",
-};
