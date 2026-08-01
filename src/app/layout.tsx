@@ -1,4 +1,4 @@
-import { Playfair_Display, DM_Sans } from 'next/font/google';
+import { Playfair_Display, DM_Sans, Inter } from 'next/font/google';
 // @ts-ignore: Allow side-effect import of global CSS without type declarations
 import "./globals.css";
 
@@ -24,9 +24,16 @@ const dmSans = DM_Sans({
   display: 'swap',
 });
 
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+  weight: ['400', '700', '900'],
+});
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${playfair.variable} ${dmSans.variable}`}>      
+    <html lang="es" className={`${playfair.variable} ${dmSans.variable} ${inter.variable}`}>
       {/* Mantener clases base y componentes intactos */}
       <body className="bg-transparent text-neutral-900">
         <GlobalBackground />

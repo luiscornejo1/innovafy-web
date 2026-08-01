@@ -44,7 +44,7 @@ export const culturePerks = [
 export const cultureValues = [
   {
     id: "01",
-    title: "Tune in",
+    title: "Marketing Digital",
     color: "#a8e1ec",
     description:
       "We actually listen. We listen to everyone around us and respect each other's opinions, whether it's our team, our clients, or our friends and family. Two heads are often better than one.",
@@ -53,7 +53,7 @@ export const cultureValues = [
   },
   {
     id: "02",
-    title: "Get Dirty",
+    title: "Branding",
     color: "#EFB2D9",
     description:
       "Embrace every challenge. Don't be afraid of getting your hands dirty. We have a collective, active curiosity that constantly moves us forwards, keeps us forever learning, and challenges us without any fear of failure.",
@@ -62,7 +62,7 @@ export const cultureValues = [
   },
   {
     id: "03",
-    title: "Think Diversely",
+    title: "Diseño UI/UX",
     color: "#d7e1d3",
     description:
       "We embrace how varied life is. Whether it's the clients and industries we work in, our interests and inspiration, or our attitudes to life in general.",
@@ -71,7 +71,7 @@ export const cultureValues = [
   },
   {
     id: "04",
-    title: "Leave No Crumbs",
+    title: "Desarrollo App & Web",
     color: "#f8e5cb",
     description:
       "Good is the enemy of great. We strive for the best, we give a shit, and care about what we do. We don't cut corners, every pixel matters. We don't leave it for someone else to tidy up, we leave no crumbs.",
@@ -80,12 +80,30 @@ export const cultureValues = [
   },
   {
     id: "05",
-    title: "Leave a Legacy",
+    title: "Diseño Digital",
     color: "#c4b5f3",
     description:
       "We care about our legacy and the impact we have. It's our duty to leave the world a better place than we found it.",
     image:
       "https://kota-content.b-cdn.net/app/uploads/2023/11/culture-row-5.jpg",
+  },
+  {
+    id: "06",
+    title: "Creación de Contenido",
+    color: "#ffd6a5",
+    description:
+      "Producimos contenido visual y narrativo que conecta con tu audiencia y refuerza la identidad de tu marca en cada canal digital.",
+    image:
+      "https://kota-content.b-cdn.net/app/uploads/2023/11/culture-row-5.jpg",
+  },
+  {
+    id: "07",
+    title: " IA & Automatización",
+    color: "#b5c4f3",
+    description:
+      "Diseñamos y optimizamos campañas en Meta, Google y otras plataformas para generar leads, ventas y retorno medible.",
+    image:
+      "https://kota-content.b-cdn.net/app/uploads/2023/11/culture-row-2.jpg",
   },
 ];
 

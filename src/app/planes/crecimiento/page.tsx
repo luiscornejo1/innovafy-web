@@ -1,50 +1,38 @@
 "use client";
 
-import PlanCard from "../../../components/planes/PlanCard";
+import PlanesLayout from "../../../components/planes/PlanesLayout";
+import PlanesPageBackground from "../../../components/planes/PlanesPageBackground";
 import { planes } from "../../../data/planesContent";
 
-export default function PlanesCrecimientoPage() {
-  const filteredPlanes = planes.filter(
-    (plan) => plan.segment === "crecimiento"
-  );
+const config = {
+  segment: "crecimiento",
+  tag: "PARA NEGOCIOS QUE QUIEREN ESCALAR AL SIGUIENTE NIVEL",
+  titulo: ["Escala sin", "límites"] as [string, string],
+  descripcion:
+    "Ya tienes tracción. Estos planes potencian lo que funciona y eliminan lo que te frena para que crezcas más rápido.",
+  precio: "Planes de Crecimiento: S/ 1,299 - S/ 2,299/mes",
+  heroTitulo: ["Muestra", "Resultados"] as [string, string],
+  heroDescripcion:
+    "Ya tienes tracción. Estos planes potencian lo que funciona y eliminan lo que te frena para que crezcas más rápido.",
+  precioRango: "S/ 1,299 - S/ 2,299 /mes",
+  // Círculo: trabajo enfocado / métricas / escalamiento
+  pilloraFila1:
+    "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1000&q=85",
+  pilloraFila3:
+    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=80",
+  videoSrc:
+    "https://assets.mixkit.co/active_storage/video_items/100328/1722991554/100328-video-720.mp4",
+};
+
+export default function Page() {
+  const segmentPlanes = planes.filter((p) => p.segment === "crecimiento");
 
   return (
-    <main className="bg-[#f0ede6] min-h-screen pt-32">
-      {/* Hero específico para Crecimiento */}
-      <div className="bg-[#4400FF] pt-16 pb-16 px-6 md:px-12 relative overflow-hidden">
-        <div className="max-w-[1400px] mx-auto relative z-10">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-[11px] font-semibold tracking-[0.18em] text-white/70 uppercase mb-5">
-              📈 Planes de Crecimiento
-            </div>
-            <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] text-white tracking-tight">
-              Escala tus
-              <br />
-              <em className="text-white/55 not-italic">Resultados</em>
-            </h1>
-            <p className="text-white/60 text-base font-light leading-relaxed max-w-md mt-5">
-              Ya tienes web y redes. Pero los clientes no llegan solos. Estos
-              planes convierten tu estructura digital en una máquina de ventas
-              constante.
-            </p>
-            <p className="text-white/40 text-sm mt-4">
-              Inversión desde S/ 999 — S/ 2,799 / mes
-            </p>
-          </div>
-        </div>
-        <div className="absolute bottom-0 right-0 text-[400px] font-serif font-black italic text-white/5 pointer-events-none select-none leading-none">
-          C
-        </div>
+    <>
+      <PlanesPageBackground />
+      <div className="relative z-[1] min-h-screen w-full overflow-x-clip bg-transparent">
+        <PlanesLayout config={config} planes={segmentPlanes} />
       </div>
-
-      {/* Grid de planes */}
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {filteredPlanes.map((plan) => (
-            <PlanCard key={plan.id} plan={plan} />
-          ))}
-        </div>
-      </div>
-    </main>
+    </>
   );
 }

@@ -1,47 +1,35 @@
-"use client";
-
-import PlanCard from "../../../components/planes/PlanCard";
+import PlanesLayout from "../../../components/planes/PlanesLayout";
+import PlanesPageBackground from "../../../components/planes/PlanesPageBackground";
 import { planes } from "../../../data/planesContent";
 
-export default function PlanesInicioPage() {
-  const filteredPlanes = planes.filter((plan) => plan.segment === "inicio");
+const config = {
+  segment: "inicio",
+  tag: "PARA NEGOCIOS QUE ESTÁN DANDO SUS PRIMEROS PASOS",
+  titulo: ["Empieza", "fuerte"] as [string, string],
+  descripcion:
+    "Todo negocio grande comenzó con una base sólida. Estos planes te dan las herramientas digitales para arrancar con ventaja.",
+  precio: "Planes de Inicio: S/ 499 - S/ 999/mes",
+  heroTitulo: ["Arranca con", "ventaja"] as [string, string],
+  heroDescripcion:
+    "Todo negocio grande comenzó con una base sólida. Estos planes te dan las herramientas digitales para arrancar con ventaja.",
+  precioRango: "S/ 499 - S/ 999 /mes",
+  // Círculo: equipo joven colaborando (emprender / primeros pasos)
+  pilloraFila1:
+    "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1000&q=85",
+  pilloraFila3:
+    "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=900&q=80",
+  videoSrc:
+    "https://assets.mixkit.co/active_storage/video_items/100319/1722990360/100319-video-720.mp4",
+};
 
+export default function Page() {
+  const segmentPlanes = planes.filter((p) => p.segment === "inicio");
   return (
-    <main className="bg-[#f0ede6] min-h-screen pt-32">
-      {/* Hero específico para Inicio */}
-      <div className="bg-[#4400FF] pt-16 pb-16 px-6 md:px-12 relative overflow-hidden">
-        <div className="max-w-[1400px] mx-auto relative z-10">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-[11px] font-semibold tracking-[0.18em] text-white/70 uppercase mb-5">
-              🌱 Planes de Inicio
-            </div>
-            <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] text-white tracking-tight">
-              Construye tu
-              <br />
-              <em className="text-white/55 not-italic">Marca Digital</em>
-            </h1>
-            <p className="text-white/60 text-base font-light leading-relaxed max-w-md mt-5">
-              Diseñamos, creamos y gestionamos tu presencia digital completa. Tú
-              enfócate en tu negocio, nosotros en hacerlo visible y rentable.
-            </p>
-            <p className="text-white/40 text-sm mt-4">
-              Inversión desde S/ 949.90 — S/ 1,999.90 / mes
-            </p>
-          </div>
-        </div>
-        <div className="absolute bottom-0 right-0 text-[400px] font-serif font-black italic text-white/5 pointer-events-none select-none leading-none">
-          I
-        </div>
+    <>
+      <PlanesPageBackground />
+      <div className="relative z-[1] min-h-screen w-full overflow-x-clip bg-transparent">
+        <PlanesLayout config={config} planes={segmentPlanes} />
       </div>
-
-      {/* Grid de planes */}
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {filteredPlanes.map((plan) => (
-            <PlanCard key={plan.id} plan={plan} />
-          ))}
-        </div>
-      </div>
-    </main>
+    </>
   );
 }

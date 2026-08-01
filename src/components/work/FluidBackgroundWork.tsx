@@ -3,6 +3,10 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
+/**
+ * Fluid background for planes sub-pages.
+ * Optimized: low poly, FPS cap, pause when tab hidden, proper rAF cleanup.
+ */
 export default function FluidBackgroundWork() {
     const mountRef = useRef<HTMLDivElement>(null);
 
@@ -13,12 +17,18 @@ export default function FluidBackgroundWork() {
         const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 10);
         camera.position.z = 1;
 
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false });
+        // Soft blurry shader — low pixel ratio is fine and much cheaper
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1));
         renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        mountRef.current.appendChild(renderer.domElement);
+        const canvas = renderer.domElement;
+        canvas.style.width = "100%";
+        canvas.style.height = "100%";
+        canvas.style.display = "block";
+        mountRef.current.appendChild(canvas);
 
-        const geometry = new THREE.PlaneGeometry(2, 2, 128, 128);
+        // Fragment noise doesn't need dense verts — 1x1 plane is enough
+        const geometry = new THREE.PlaneGeometry(2, 2, 1, 1);
 
         const material = new THREE.ShaderMaterial({
             uniforms: {
@@ -29,12 +39,12 @@ export default function FluidBackgroundWork() {
                 uAlpha: { value: 0.85 },
                 uColor: {
                     value: [
-                        new THREE.Color(0.98, 0.96, 0.94),  // crema
-                        new THREE.Color(0.20, 0.55, 0.95),  // azul intenso
-                        new THREE.Color(0.45, 0.10, 0.80),  // morado intenso
-                        new THREE.Color(0.90, 0.20, 0.70),  // rosa intenso
-                        new THREE.Color(0.98, 0.96, 0.94),  // crema
-                        new THREE.Color(0.25, 0.50, 0.90),  // azul intenso
+                        new THREE.Color(0.98, 0.96, 0.94),
+                        new THREE.Color(0.20, 0.55, 0.95),
+                        new THREE.Color(0.45, 0.10, 0.80),
+                        new THREE.Color(0.90, 0.20, 0.70),
+                        new THREE.Color(0.98, 0.96, 0.94),
+                        new THREE.Color(0.25, 0.50, 0.90),
                     ]
                 },
             },
@@ -44,7 +54,7 @@ export default function FluidBackgroundWork() {
                 uniform vec2 uRayMouse;
                 void main() {
                     vUv = uv;
-                    uPos = position.xy + (uRayMouse * 0.15); 
+                    uPos = position.xy + (uRayMouse * 0.15);
                     gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
                 }
             `,
@@ -88,41 +98,62 @@ export default function FluidBackgroundWork() {
 
                 void main() {
                     vec3 firstColor = uColor[0];
-                    vec2 seed = (vUv * -uPos) * mix(vUv, uPos, 30.0 * uAmount);
+                    vec2 seed = (vUv * -uPos) * mix(vUv, uPos, 30.0 * uAmount) + vec2(uTime * 0.03, uTime * 0.02);
                     float ml = pow(6.0, 0.5) * -0.01;
-                    
-                    float timeOsc = sin(uTime * 0.5); 
-                    float n = cnoise21(seed) + 1.0 * timeOsc;
-                    vec3 color = mix(firstColor, firstColor, cnoise21(seed) / 1000.0);
-                    
+                    float breathe = 0.2 + 0.15 * sin(uTime * 0.5);
+                    float n = cnoise21(seed) + breathe;
+                    vec3 color = firstColor;
+
                     for (int i = 1; i < 5; i++) {
                         float amount = (float(i) + 1.0) * 0.09;
-                        float n2 = smoothstep(amount * timeOsc + ml, amount * timeOsc + ml + amount * timeOsc, n * timeOsc);
+                        float n2 = smoothstep(
+                            amount + ml,
+                            amount + ml + amount,
+                            n
+                        );
                         color = mix(color, uColor[i], n2);
                     }
-                    
+
                     float alpha = uAlpha * pow(sin(vUv.x * PI), uPow);
                     alpha *= pow(sin(vUv.y * PI), uPow);
-                    
+
                     gl_FragColor = vec4(color, alpha);
                 }
             `
         });
 
         const mesh = new THREE.Mesh(geometry, material);
-        mesh.rotation.z = 0;
         mesh.scale.set(3, 3, 1);
         scene.add(mesh);
 
         const clock = new THREE.Clock();
-        const animate = () => {
-            material.uniforms.uTime.value = clock.getElapsedTime() * 0.08;
+        const FRAME_INTERVAL = 1000 / 20; // 20 FPS cap
+        let animId = 0;
+        let lastFrameTime = 0;
+        let paused = document.hidden;
+
+        const animate = (now: number) => {
+            animId = requestAnimationFrame(animate);
+            if (paused) return;
+            const delta = now - lastFrameTime;
+            if (delta < FRAME_INTERVAL) return;
+            lastFrameTime = now - (delta % FRAME_INTERVAL);
+
+            material.uniforms.uTime.value = clock.getElapsedTime() * 0.15;
             renderer.render(scene, camera);
-            requestAnimationFrame(animate);
         };
-        animate();
+        animId = requestAnimationFrame(animate);
+
+        const handleVisibility = () => {
+            paused = document.hidden;
+            if (!paused) {
+                clock.start();
+                lastFrameTime = performance.now();
+            }
+        };
 
         const handleMouseMove = (e: MouseEvent) => {
+            if (paused) return;
             material.uniforms.uRayMouse.value.set(
                 (e.clientX / window.innerWidth) * 2 - 1,
                 -(e.clientY / window.innerHeight) * 2 + 1
@@ -131,18 +162,24 @@ export default function FluidBackgroundWork() {
 
         const handleResize = () => {
             renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1));
         };
 
-        window.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('visibilitychange', handleVisibility);
+        window.addEventListener('mousemove', handleMouseMove, { passive: true });
         window.addEventListener('resize', handleResize);
 
         return () => {
+            cancelAnimationFrame(animId);
+            document.removeEventListener('visibilitychange', handleVisibility);
             window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('resize', handleResize);
+            geometry.dispose();
+            material.dispose();
             renderer.dispose();
+            if (canvas.parentNode) canvas.parentNode.removeChild(canvas);
         };
     }, []);
 
-    return <div ref={mountRef} className="fixed inset-0 z-0 pointer-events-none" />;
+    return <div ref={mountRef} className="fixed inset-0 z-0 h-[100dvh] w-full pointer-events-none [&_canvas]:h-full [&_canvas]:w-full" />;
 }
